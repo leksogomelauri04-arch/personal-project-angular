@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'app/shared/scss/reset.scss';
+
+body{
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+
+    .container{
+        margin: 0 auto;
+    }
+}

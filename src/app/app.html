@@ -1,1 +1,4 @@
 <router-outlet />
+@if(spinnerServ.$spinnerOn | async){
+  <app-spinner/>
+}
