@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="auth-card">
+    <div class="texts">
+      <h2>შესვლა სისტემაში</h2>
+      <p>შეიყვანეთ მონაცემები ავტორიზაციისთვის</p>
+    </div>
+    <form [formGroup]="userForm">
+        <div>
+          <label for="email">ელ-ფოსტა</label>
+          <br>
+          <input type="text" id="email" formControlName="email">
+        </div>
+        <div>
+            <div class="forgot-password">
+              <label for="password">პაროლი</label>
+              <a href="">დაგავიწყდა პაროლი?</a>
+            </div>
+            <input type="password" id="password" formControlName="password">
+        </div>
+        <div class="checkbox">
+            <input type="checkbox">
+            <p>დამახსოვრება</p>
+        </div>
+        <button>შესვლა</button>
+        <hr>
+        <div class="texts">
+            <p>არ გაქვთ ანგარიში? <a href="">რეგისტრაცია</a></p>
+        </div>
+    </form>
+</div>

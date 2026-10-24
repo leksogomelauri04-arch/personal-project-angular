@@ -1,0 +1,94 @@
+@use '../../shared/scss/variables.scss' as *;
+.auth-card {
+    background-color: $primary-color;
+    margin: 0 auto;
+    height: 60%;
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px gray;
+    border-radius: 20px;
+    gap: 20px;
+    a{
+        font-size: 14px;
+        text-decoration: none;
+        color: $btn-red-color;
+    }
+
+    .texts {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h2 {
+        font-size: 33px;
+        line-height: 50px;
+        color: $white-text-color;
+        }
+         p {
+        font-size: 14px;
+        color:$grey-text-color;
+        }  
+    }
+
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        div{
+            width: 80%;
+            margin: 0 auto;
+            padding: 5px;
+            label{
+                margin-bottom: 5px;
+                color: $grey-text-color;
+                
+            }
+            input{
+                width: 100%;
+                border-radius: 10px;
+                border: 0;
+                height: 40px;
+                background-color: $bg-color;
+                color: $white-text-color;
+            }
+        }
+        .forgot-password{
+            width: 100%;
+            justify-content: space-between;
+            display: flex;
+            
+
+        }
+        div.checkbox{
+            display: flex;
+            gap: 10px;
+            color: $grey-text-color;
+                   
+            input{
+                height: 20px;
+                width: 5%;
+            }
+        }
+        button{
+            width: 80%;
+            height: 40px;
+            border-radius: 10px;
+            border: 0;
+            font-size: 20px;
+            margin-top: 30px;
+            background-color: $btn-red-color;
+            color: $white-text-color;
+        }
+    }
+
+
+}

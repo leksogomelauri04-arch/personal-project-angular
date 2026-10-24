@@ -1,11 +1,13 @@
 @use 'app/shared/scss/reset.scss';
-
+@use 'app/shared/scss/variables.scss' as *;
 body{
     max-width: 1320px;
     margin: 0 auto;
     position: relative;
+    background-color:$bg-color;
 
     .container{
         margin: 0 auto;
     }
 }
+
