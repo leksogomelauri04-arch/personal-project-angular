@@ -15,6 +15,10 @@
     border: solid 1px gray;
     border-radius: 20px;
     gap: 20px;
+    hr{
+        color: $grey-text-color;
+        width: 80%;
+    }
     a{
         font-size: 14px;
         text-decoration: none;
@@ -31,7 +35,7 @@
         line-height: 50px;
         color: $white-text-color;
         }
-         p {
+        p {
         font-size: 14px;
         color:$grey-text-color;
         }  

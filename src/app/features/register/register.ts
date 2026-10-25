@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { form } from '@angular/forms/signals';
+import { matchValidator } from './validators';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [ReactiveFormsModule, RouterLink],
   selector: 'app-register',
   styleUrl: './register.scss',
   templateUrl: './register.html',
@@ -16,8 +18,15 @@ export class Register {
       Validators.required,
       Validators.pattern(/^(?:\+?995\s?)?5\d{2}[\s-]?\d{2}[\s-]?\d{2}[\s-]?\d{2}$/) 
     ]),
-    password: new FormControl(''),
-    confrimPassword: new FormControl(''),
-    confrim: new FormControl('')
+    passwordGroup: new FormGroup({
+      password: new FormControl('',
+         [Validators.required,
+          Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^ws]).{8,}$')]),
+      confirmPassword: new FormControl('', Validators.required),
+    },
+    [matchValidator('password', 'confirmPassword')],
+  ),
+    
+    confirm: new FormControl('', [Validators.requiredTrue])
   })
 }

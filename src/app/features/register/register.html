@@ -1,1 +1,37 @@
-<p>register works!</p>
+<div class="auth-card">
+    <div class="texts">
+      <h2>ახალი ანგარიშის შექმნა</h2>
+      <p>შეავსეთ ფორმა AutoPulse-ზე დასარეგისტრირებლად</p>
+    </div>
+    <form [formGroup]="userForm">
+        <div>
+          <label for="username">მომხმარებილის სახელი</label>
+          <input type="text" id="username" formControlName="username">
+        </div>
+        <div>
+          <label for="email">ელ-ფოსტა</label>
+          <input type="text" id="email" formControlName="email">
+        </div>
+        <div>
+          <label for="mobile">ტელეფონის ნომერი</label>
+          <input type="text" id="mobile" formControlName="mobile">
+        </div>
+        <ng-container formGroupName="passwordGroup">
+          <div>
+            <label for="password">პაროლი</label>
+            <input type="password" id="password" formControlName="password">
+          </div>
+          <div>
+            <label for="confirmPassword">დაადასტურე პაროლი</label>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword">
+          </div>
+        </ng-container>
+        <div class="checkbox">
+          <input type="checkbox" id="confirm" formControlName="confirm">
+          <label for="">დადასტურება</label>
+        </div>
+        <button>რეგისტრაცია</button>
+        <hr>
+        <p>უკვე გაქვთ ანგარიში?<a routerLink="/login">შესვლა</a></p>
+    </form>
+</div>
