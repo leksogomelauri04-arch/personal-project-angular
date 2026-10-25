@@ -1,13 +1,12 @@
 {
-  posts: [
-    { id: "1", title: "a title", views: 100 },
-    { id: "2", title: "another title", views: 200 },
-  ],
-  comments: [
-    { id: "1", text: "a comment about post 1", postId: "1" },
-    { id: "2", text: "another comment about post 1", postId: "1" },
-  ],
-  profile: {
-    name: "typicode",
-  },
+  "users": [
+    { "id": "1", "username": "giorgi", "email": "giorgi@gmail.com", "mobile": "557511131", "password": "Abgd1231" },
+    { "id": "2", "username": "lasha", "email": "lasha@gmail.com", "mobile": "557511132", "password": "Abgd1232" },
+    { "id": "3", "username": "mariami", "email": "mariami@gmail.com", "mobile": "557511133", "password": "Abgd1233" },
+    { "id": "4", "username": "nini", "email": "nini@gmail.com", "mobile": "557511134", "password": "Abgd1234" },
+    { "id": "5", "username": "nino", "email": "nino@gmail.com", "mobile": "557511135", "password": "Abgd1235" },
+    { "id": "6", "username": "elene", "email": "elene@gmail.com", "mobile": "557511136", "password": "Abgd1236" },
+    { "id": "7", "username": "daviti", "email": "daviti@gmail.com", "mobile": "557511137", "password": "Abgd1237" },
+    { "id": "8", "username": "ani", "email": "ani@gmail.com", "mobile": "557511138", "password": "Abgd1238" }
+  ]
 }

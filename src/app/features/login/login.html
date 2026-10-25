@@ -39,7 +39,7 @@
             <input type="checkbox">
             <p>დამახსოვრება</p>
         </div>
-        <button [disabled]="userForm.invalid">შესვლა</button>
+        <button (click)="login()" [disabled]="userForm.invalid">შესვლა</button>
         <hr>
         <div class="texts">
             <p>არ გაქვთ ანგარიში? <a routerLink="/register">რეგისტრაცია</a></p>
