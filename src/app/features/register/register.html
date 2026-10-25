@@ -70,7 +70,7 @@
           <input type="checkbox" id="confirm" formControlName="confirm">
           <label for="">დადასტურება</label>
         </div>
-        <button  [disabled]="userForm.invalid">რეგისტრაცია</button>
+        <button (click)="register()"  [disabled]="userForm.invalid">რეგისტრაცია</button>
         <hr>
         <p>უკვე გაქვთ ანგარიში?<a routerLink="/login">შესვლა</a></p>
     </form>

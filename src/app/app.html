@@ -1,3 +1,6 @@
+@if (errorServ.showErrorMsg()) {
+  <app-error-msg [errorMsg]="errorServ.msg()" />
+}
 <router-outlet />
 @if(spinnerServ.$spinnerOn | async){
   <app-spinner/>
