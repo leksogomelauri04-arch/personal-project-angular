@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { email, validate } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
+import { ErrorMsg } from '../../shared/components/error-msg/error-msg';
 
 @Component({
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ErrorMsg],
   selector: 'app-login',
   styleUrl: './login.scss',
   templateUrl: './login.html',
@@ -23,7 +24,7 @@ export class Login {
   public get emailControl():FormControl{
     return this.userForm.get('email') as FormControl
   }
-  public get passwordlControl():FormControl{
+  public get passwordControl():FormControl{
     return this.userForm.get('password') as FormControl
   }
 }

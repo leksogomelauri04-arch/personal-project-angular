@@ -8,6 +8,17 @@
           <label for="email">ელ-ფოსტა</label>
           <br>
           <input type="text" id="email" formControlName="email">
+          @if (emailControl.touched) {
+            @if (emailControl.hasError('required')) {
+                <app-error-msg [errorMsg]="'ამ ველის შევსება აუცილებელია'" />
+            }
+            @if(emailControl.hasError('email')){
+                <app-error-msg [errorMsg]="'ფორმატი არასწორია'" />
+            }
+            @if(emailControl.hasError('minlength')){
+                <app-error-msg [errorMsg]="'ელ-ფოსტა უნდა მოიცავდეს მინიმუმ 10 სიმბოლოს'" />
+            }
+          }
         </div>
         <div>
             <div class="forgot-password">
@@ -15,12 +26,20 @@
               <a href="">დაგავიწყდა პაროლი?</a>
             </div>
             <input type="password" id="password" formControlName="password">
+            @if (passwordControl.touched) {
+              @if (passwordControl.hasError('required')) {
+                <app-error-msg [errorMsg]="'ამ ველის შევსება აუცილებელია'" />
+              }
+              @if(passwordControl.hasError('pattern')){
+                <app-error-msg [errorMsg]="'სუსტი პაროლია, კიდევ სცადე'" />
+              }
+            }
         </div>
         <div class="checkbox">
             <input type="checkbox">
             <p>დამახსოვრება</p>
         </div>
-        <button>შესვლა</button>
+        <button [disabled]="userForm.invalid">შესვლა</button>
         <hr>
         <div class="texts">
             <p>არ გაქვთ ანგარიში? <a routerLink="/register">რეგისტრაცია</a></p>

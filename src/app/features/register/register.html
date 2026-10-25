@@ -7,30 +7,70 @@
         <div>
           <label for="username">მომხმარებილის სახელი</label>
           <input type="text" id="username" formControlName="username">
+          @if (usernameControl.touched) {
+            @if (usernameControl.hasError('required')) {
+              <app-error-msg [errorMsg]="'ჩაწერეთ მომხმარებლის სახელი'" />
+            }
+            @if (usernameControl.hasError('minlength')) {
+              <app-error-msg [errorMsg]="'მომხმარებლის სახელი უნდა შეიცავდეს მინიმუმ 5 სიმბლოს'" />
+            }
+          }
         </div>
         <div>
           <label for="email">ელ-ფოსტა</label>
           <input type="text" id="email" formControlName="email">
+          @if (emailControl.touched) {
+            @if (emailControl.hasError('required')) {
+                <app-error-msg [errorMsg]="'ამ ველის შევსება აუცილებელია'" />
+            }
+            @if(emailControl.hasError('email')){
+                <app-error-msg [errorMsg]="'ფორმატი არასწორია'" />
+            }
+            @if(emailControl.hasError('minlength')){
+                <app-error-msg [errorMsg]="'ელ-ფოსტა უნდა მოიცავდეს მინიმუმ 10 სიმბოლოს'" />
+            }
+          }
         </div>
         <div>
           <label for="mobile">ტელეფონის ნომერი</label>
           <input type="text" id="mobile" formControlName="mobile">
+          @if(mobileControl.touched){
+            @if (mobileControl.hasError('required')) {
+              <app-error-msg [errorMsg]="'ჩაწერეთ მობილურის ნომერი'"/>
+            }
+            @if(mobileControl.hasError('pattern')){
+              <app-error-msg [errorMsg]="'არასწორი ფორმატია (555 55 55 55)'" />
+            }
+          }
         </div>
         <ng-container formGroupName="passwordGroup">
           <div>
             <label for="password">პაროლი</label>
             <input type="password" id="password" formControlName="password">
+            @if (passwordControl.touched) {
+              @if (passwordControl.hasError('required')) {
+                <app-error-msg [errorMsg]="'ამ ველის შევსება აუცილებელია'" />
+              }
+              @if(passwordControl.hasError('pattern')){
+                <app-error-msg [errorMsg]="'სუსტი პაროლია, კიდევ სცადე'" />
+              }
+            }
           </div>
           <div>
             <label for="confirmPassword">დაადასტურე პაროლი</label>
             <input type="password" id="confirmPassword" formControlName="confirmPassword">
+            @if(passwordControl.touched && confirmPasswordControl.touched){
+              @if (userForm.get('passwordGroup')?.hasError('mismatch')) {
+                <app-error-msg [errorMsg]="'პაროლი არასწორია'"/>
+              }            
+            }
           </div>
         </ng-container>
         <div class="checkbox">
           <input type="checkbox" id="confirm" formControlName="confirm">
           <label for="">დადასტურება</label>
         </div>
-        <button>რეგისტრაცია</button>
+        <button  [disabled]="userForm.invalid">რეგისტრაცია</button>
         <hr>
         <p>უკვე გაქვთ ანგარიში?<a routerLink="/login">შესვლა</a></p>
     </form>
