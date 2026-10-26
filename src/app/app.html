@@ -1,3 +1,4 @@
+<app-header/>
 @if (errorServ.showErrorMsg()) {
   <app-error-msg [errorMsg]="errorServ.msg()" />
 }
@@ -5,3 +6,4 @@
 @if(spinnerServ.$spinnerOn | async){
   <app-spinner/>
 }
+<app-footer/>

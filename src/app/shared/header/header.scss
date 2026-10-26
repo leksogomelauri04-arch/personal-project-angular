@@ -1,0 +1,61 @@
+@use '../../shared/scss/variables.scss' as *;
+
+// :host {
+//     display: block;
+//     width: 100%;
+// }
+header{
+    position: sticky;
+    margin-bottom: 50px;
+.main {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    margin: 0;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background-color: $primary-color;
+
+    .logo {
+        cursor: pointer;
+
+        img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+        }
+    }
+
+    .middle {
+        display: flex;
+        gap: 40px;
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+    }
+
+    .left {   // HTML-ში ასე ჰქვია; სურვილისამებრ გადაარქვი .right-ად ორივეგან
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .add-car{
+            background-color:$btn-red-color;
+            color: $white-text-color;
+            padding: 10px;
+            border-radius: 10px;
+            border: 0;
+        }
+        .favorites{
+            color: $btn-red-color;
+            font-size: 25px;
+        }
+    }
+}
+}

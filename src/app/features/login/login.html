@@ -30,9 +30,9 @@
               @if (passwordControl.hasError('required')) {
                 <app-error-msg [errorMsg]="'ამ ველის შევსება აუცილებელია'" />
               }
-              @if(passwordControl.hasError('pattern')){
+              <!-- @if(passwordControl.hasError('pattern')){
                 <app-error-msg [errorMsg]="'სუსტი პაროლია, კიდევ სცადე'" />
-              }
+              } -->
             }
         </div>
         <div class="checkbox">

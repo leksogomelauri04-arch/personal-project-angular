@@ -42,3 +42,20 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* შენი არსებული რესეტი იქვე იყოს, უბრალოდ ბოლოში დაამატე ეს: */
+
+*, *::before, *::after {
+    box-sizing: border-box; /* ეს ყველაზე მთავარია პედინგებისა და სიგანის გასასწორებლად! */
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* ზღუდავს მარჯვენა მხარეს ჰორიზონტალურ გადაცდენებსა და ცარიელ ადგილებს */
+}
+menu {
+    margin: 0;
+    padding: 0;
+    // დანარჩენი უცვლელი
+}

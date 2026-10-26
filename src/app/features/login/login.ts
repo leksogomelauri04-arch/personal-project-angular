@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { email, validate } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
 import { ErrorMsg } from '../../shared/components/error-msg/error-msg';
-import { AuthService } from '../../core/services/auth-service';
+import { AuthService } from '../../core/services/user-services/auth-service';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink, ErrorMsg],
@@ -18,7 +18,7 @@ export class Login {
     email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(10)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^ws]).{8,}$'),
+      // Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^ws]).{8,}$'),
     ]),
   })
 

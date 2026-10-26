@@ -5,7 +5,7 @@ import { matchValidator } from './validators';
 import { RouterLink } from '@angular/router';
 import { ErrorMsg } from '../../shared/components/error-msg/error-msg';
 import { IUserInfo } from '../../shared/interfaces/users.interfaces';
-import { AuthService } from '../../core/services/auth-service';
+import { AuthService } from '../../core/services/user-services/auth-service';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink, ErrorMsg],

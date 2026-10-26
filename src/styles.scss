@@ -1,13 +1,30 @@
-@use 'app/shared/scss/reset.scss';
+// @use 'app/shared/scss/reset.scss';
 @use 'app/shared/scss/variables.scss' as *;
-body{
-    max-width: 1320px;
-    margin: 0 auto;
-    position: relative;
-    background-color:$bg-color;
 
-    .container{
-        margin: 0 auto;
-    }
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    position: relative;
+    background-color: $bg-color;
+    overflow-x: hidden; // იცავს ჰორიზონტალური სქროლისგან
+}
+
+// Angular-ის host ელემენტი default-ად inline-ია
+app-root {
+    display: block;
+    width: 100%;
+}
+
+// კონტეინერი, რომელიც შიგთავსს გააცენტრებს 1500px-ზე
+.container {
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}

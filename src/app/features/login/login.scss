@@ -1,4 +1,7 @@
 @use '../../shared/scss/variables.scss' as *;
+body{
+    max-width: 1320px;
+}
 .auth-card {
     background-color: $primary-color;
     margin: 0 auto;

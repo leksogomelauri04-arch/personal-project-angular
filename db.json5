@@ -1,10 +1,240 @@
-{users:[{id:'1',username:'giorgi',email:'giorgi@gmail.com',mobile:'557511131',password:'Abgd1231'},
-{id:'2',username:'lasha',email:'lasha@gmail.com',mobile:'557511132',password:'Abgd1232'},
-{id:'3',username:'mariami',email:'mariami@gmail.com',mobile:'557511133',password:'Abgd1233'},
-{id:'4',username:'nini',email:'nini@gmail.com',mobile:'557511134',password:'Abgd1234'},
-{id:'5',username:'nino',email:'nino@gmail.com',mobile:'557511135',password:'Abgd1235'},
-{id:'6',username:'elene',email:'elene@gmail.com',mobile:'557511136',password:'Abgd1236'},
-{id:'7',username:'daviti',email:'daviti@gmail.com',mobile:'557511137',password:'Abgd1237'},
-{id:'8',username:'ani',email:'ani@gmail.com',mobile:'557511138',password:'Abgd1238'},
-{username:'vaxtangi',email:'vaxtangi@gmail.com',mobile:'579189089',password:'Vaxtangi123',id:'w48jMdMH234'}
-],$schema:'./node_modules/json-server/schema.json'}
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "giorgi",
+      "email": "giorgi@gmail.com",
+      "mobile": "557511131",
+      "password": "Abgd1231"
+    },
+    {
+      "id": "2",
+      "username": "lasha",
+      "email": "lasha@gmail.com",
+      "mobile": "557511132",
+      "password": "Abgd1232"
+    },
+    {
+      "id": "3",
+      "username": "mariami",
+      "email": "mariami@gmail.com",
+      "mobile": "557511133",
+      "password": "Abgd1233"
+    },
+    {
+      "id": "4",
+      "username": "nini",
+      "email": "nini@gmail.com",
+      "mobile": "557511134",
+      "password": "Abgd1234"
+    },
+    {
+      "id": "5",
+      "username": "nino",
+      "email": "nino@gmail.com",
+      "mobile": "557511135",
+      "password": "Abgd1235"
+    },
+    {
+      "id": "6",
+      "username": "elene",
+      "email": "elene@gmail.com",
+      "mobile": "557511136",
+      "password": "Abgd1236"
+    },
+    {
+      "id": "7",
+      "username": "daviti",
+      "email": "daviti@gmail.com",
+      "mobile": "557511137",
+      "password": "Abgd1237"
+    },
+    {
+      "id": "8",
+      "username": "ani",
+      "email": "ani@gmail.com",
+      "mobile": "557511138",
+      "password": "Abgd1238"
+    },
+    {
+      "id": "w48jMdMH234",
+      "username": "vaxtangi",
+      "email": "vaxtangi@gmail.com",
+      "mobile": "579189089",
+      "password": "Vaxtangi123"
+    }
+  ],
+  "categories": [
+    {
+      "brand": "Mercedes-Benz",
+      "models": ["C-Class", "E-Class", "S-Class", "G-Class", "GLE"]
+    },
+    {
+      "brand": "BMW",
+      "models": ["3 Series", "5 Series", "X5", "X3", "M4"]
+    },
+    {
+      "brand": "Audi",
+      "models": ["A4", "A6", "Q5", "Q7", "R8"]
+    },
+    {
+      "brand": "Volkswagen",
+      "models": ["Golf", "Passat", "Tiguan", "Touareg", "Jetta"]
+    },
+    {
+      "brand": "Porsche",
+      "models": ["911", "Cayenne", "Macan", "Panamera", "Taycan"]
+    },
+    {
+      "brand": "Opel",
+      "models": ["Astra", "Corsa", "Insignia", "Mokka", "Grandland"]
+    },
+    {
+      "brand": "Toyota",
+      "models": ["Camry", "Corolla", "RAV4", "Land Cruiser", "Prius"]
+    },
+    {
+      "brand": "Lexus",
+      "models": ["RX", "ES", "NX", "GX", "LS"]
+    },
+    {
+      "brand": "Honda",
+      "models": ["Civic", "Accord", "CR-V", "Pilot", "HR-V"]
+    },
+    {
+      "brand": "Nissan",
+      "models": ["Altima", "Rogue", "Qashqai", "GT-R", "Patrol"]
+    },
+    {
+      "brand": "Subaru",
+      "models": ["Outback", "Forester", "Impreza", "Crosstrek", "WRX"]
+    },
+    {
+      "brand": "Mazda",
+      "models": ["Mazda3", "Mazda6", "CX-5", "CX-9", "MX-5 Miata"]
+    },
+    {
+      "brand": "Mitsubishi",
+      "models": ["Outlander", "Pajero", "Lancer", "Eclipse Cross", "ASX"]
+    },
+    {
+      "brand": "Suzuki",
+      "models": ["Vitara", "Swift", "Jimny", "SX4", "Grand Vitara"]
+    },
+    {
+      "brand": "Infiniti",
+      "models": ["Q50", "QX60", "QX80", "QX50", "Q70"]
+    },
+    {
+      "brand": "Ford",
+      "models": ["Mustang", "F-150", "Explorer", "Focus", "Escape"]
+    },
+    {
+      "brand": "Chevrolet",
+      "models": ["Corvette", "Camaro", "Tahoe", "Malibu", "Silverado"]
+    },
+    {
+      "brand": "Cadillac",
+      "models": ["Escalade", "XT5", "CT5", "Lyriq", "XT4"]
+    },
+    {
+      "brand": "Jeep",
+      "models": ["Wrangler", "Grand Cherokee", "Cherokee", "Renegade", "Compass"]
+    },
+    {
+      "brand": "Dodge",
+      "models": ["Challenger", "Charger", "Durango", "Hornet", "Viper"]
+    },
+    {
+      "brand": "Tesla",
+      "models": ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck"]
+    },
+    {
+      "brand": "RAM",
+      "models": ["1500", "2500", "3500", "TRX", "ProMaster"]
+    },
+    {
+      "brand": "Lincoln",
+      "models": ["Navigator", "Aviator", "Corsair", "Nautilus", "Town Car"]
+    },
+    {
+      "brand": "Hyundai",
+      "models": ["Elantra", "Sonata", "Tucson", "Santa Fe", "Palisade"]
+    },
+    {
+      "brand": "Kia",
+      "models": ["K5", "Sportage", "Sorento", "Telluride", "Stinger"]
+    },
+    {
+      "brand": "Genesis",
+      "models": ["G70", "G80", "G90", "GV70", "GV80"]
+    },
+    {
+      "brand": "Land Rover",
+      "models": ["Defender", "Discovery", "Discovery Sport", "Freelander", "Range Rover Classic"]
+    },
+    {
+      "brand": "Range Rover",
+      "models": ["Evoque", "Velar", "Sport", "Autobiography", "SV"]
+    },
+    {
+      "brand": "Jaguar",
+      "models": ["F-Pace", "E-Pace", "XE", "XF", "F-Type"]
+    },
+    {
+      "brand": "Bentley",
+      "models": ["Continental GT", "Bentayga", "Flying Spur", "Mulsanne", "Azure"]
+    },
+    {
+      "brand": "Rolls-Royce",
+      "models": ["Phantom", "Ghost", "Cullinan", "Wraith", "Spectre"]
+    },
+    {
+      "brand": "Aston Martin",
+      "models": ["DB11", "Vantage", "DBS", "DBX", "Valhalla"]
+    },
+    {
+      "brand": "Mini",
+      "models": ["Cooper", "Countryman", "Clubman", "Paceman", "Cabrio"]
+    },
+    {
+      "brand": "Ferrari",
+      "models": ["488", "F8 Tributo", "LaFerrari", "Roma", "SF90 Stradale"]
+    },
+    {
+      "brand": "Lamborghini",
+      "models": ["Aventador", "Huracan", "Urus", "Revuelto", "Gallardo"]
+    },
+    {
+      "brand": "Maserati",
+      "models": ["Ghibli", "Quattroporte", "Levante", "GranTurismo", "MC20"]
+    },
+    {
+      "brand": "Alfa Romeo",
+      "models": ["Giulia", "Stelvio", "Tonale", "4C", "Giulietta"]
+    },
+    {
+      "brand": "Fiat",
+      "models": ["500", "Panda", "Tipo", "Punto", "124 Spider"]
+    }
+  ],
+  "listings": [
+    {
+      "id": "1",
+      "userId": "1",
+      "brand": "BMW",
+      "model": "5 Series",
+      "year": 2020,
+      "mileage": 85000,
+      "engineVolume": 3.0,
+      "price": 22500,
+      "currency": "USD",
+      "description": "მანქანა არის იდეალურ მდგომარეობაში, შემოწმებულია ცენტრში.",
+      "images": [
+        "public/uploads/bmw-front.jpg",
+        "public/uploads/bmw-interior.jpg"
+      ]
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

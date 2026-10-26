@@ -1,0 +1,35 @@
+<div class="main">
+  <div class="texts">
+    <p>⚡ყველაზე სწრაფი ავტო-პორტალი</p>
+    <h1>იპოვე შენი ოცნების ავტომობილი ან გაყიდე მარტივად</h1>
+    <h5>ათასობით განცხადება სანდო გამყიდველებისგან ერთ სივრცეში. იპოვე სასურველი მარკა და მოდელი საუკეთესო ფასად.</h5>
+  </div>
+  <div class="search">
+        <div>
+            <label for="brand">მარკა</label>
+            <select id="brand">
+                @for (category of carServ.categories(); track $index) {
+                    <option value="">{{category.brand}}</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label for="model">მოდელი</label>
+            <select id="model">
+                @for (category of carServ.categories(); track $index) {
+                    <option  value="">{{category.models}}</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label for="year">წელი</label>
+            <select id="year">
+              <option value="" disabled selected>ნებისმიერი წელი</option>
+              @for (year of years; track year) {
+                <option [value]="year">{{ year }}</option>
+              }
+            </select>
+        </div>
+        <button>🔍 ძებნა</button>
+    </div>
+</div>
