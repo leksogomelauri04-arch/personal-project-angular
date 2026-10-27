@@ -4,6 +4,7 @@ import { Register } from './features/register/register';
 import { Dashboard } from './features/dashboard/dashboard';
 import { CarSearchResults } from './features/car-search-results/car-search-results';
 import { CarDetails } from './features/car-details/car-details';
+import { AddCar } from './features/add-car/add-car';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
         path: 'search-results',
         component: CarSearchResults // სერჩის შედეგების ცალკე, დამოუკიდებელი გვერდი
+    },
+    {
+        path: 'add-car',
+        component: AddCar // მანქანის დამატების გვერდი
     },
     {
         path: 'car/:id',

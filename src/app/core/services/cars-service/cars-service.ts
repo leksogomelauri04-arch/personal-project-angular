@@ -2,6 +2,7 @@ import { inject, Injectable, Service, signal } from '@angular/core';
 import { validate } from '@angular/forms/signals';
 import { ICarListing, ICategory } from '../../../shared/interfaces/cars.interface';
 import { CarsApi } from './cars-api';
+import { Observable } from 'rxjs';
 // @Injectable({
 //   providedIn: 'root'
 // })
@@ -32,4 +33,7 @@ export class CarsService {
             
         })
     }
+    public createListing(car: Partial<ICarListing>): Observable<ICarListing> {
+    return this.carsApi.createListing(car);
+  }
 }

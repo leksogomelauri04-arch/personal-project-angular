@@ -1,0 +1,124 @@
+<div class="main">
+  <div class="auth-card">
+    <div class="texts">
+      <h2>მანქანის დამატება</h2>
+      <p>აირჩიეთ პარამეტრები და ატვირთეთ ფოტოები განცხადების განსათავსებლად</p>
+    </div>
+
+    <form [formGroup]="carForm">
+      
+      <!-- მარკა (ახლა უკვე იტვირთება სერვისიდან ngOnInit-ის წყალობით) -->
+      <div>
+        <label for="brand">მარკა</label>
+        <select id="brand" formControlName="brand" (change)="onBrandChange($event)">
+          <option value="" disabled selected>აირჩიეთ მარკა</option>
+          @for (category of carServ.categories(); track $index) {
+            <option [value]="category.brand">{{ category.brand }}</option>
+          }
+        </select>
+        @if (brandControl.touched && brandControl.hasError('required')) {
+          <app-error-msg [errorMsg]="'აირჩიეთ მანქანის მარკა'" />
+        }
+      </div>
+
+      <!-- მოდელი -->
+      <div>
+        <label for="model">მოდელი</label>
+        <select id="model" formControlName="model">
+          <option value="" disabled selected>აირჩიეთ მოდელი</option>
+          @for (model of availableModels; track $index) {
+            <option [value]="model">{{ model }}</option>
+          }
+        </select>
+        @if (modelControl.touched && modelControl.hasError('required')) {
+          <app-error-msg [errorMsg]="'აირჩიეთ მანქანის მოდელი'" />
+        }
+      </div>
+
+      <!-- წელი -->
+      <div>
+        <label for="year">წელი</label>
+        <select id="year" formControlName="year">
+          <option value="" disabled selected>აირჩიეთ წელი</option>
+          @for (year of years; track year) {
+            <option [value]="year">{{ year }}</option>
+          }
+        </select>
+        @if (yearControl.touched && yearControl.hasError('required')) {
+          <app-error-msg [errorMsg]="'აირჩიეთ გამოშვების წელი'" />
+        }
+      </div>
+
+      <!-- გარბენი -->
+      <div>
+        <label for="mileage">გარბენი (კმ)</label>
+        <input type="number" id="mileage" formControlName="mileage" placeholder="მაგ: 85000">
+        @if (mileageControl.touched && mileageControl.hasError('required')) {
+          <app-error-msg [errorMsg]="'ჩაწერეთ გარბენი'" />
+        }
+      </div>
+
+      <!-- ძრავის მოცულობა -->
+      <div>
+        <label for="engineVolume">ძრავის მოცულობა (ლ)</label>
+        <input type="number" step="0.1" id="engineVolume" formControlName="engineVolume" placeholder="მაგ: 3.0">
+        @if (engineVolumeControl.touched && engineVolumeControl.hasError('required')) {
+          <app-error-msg [errorMsg]="'ჩაწერეთ ძრავის მოცულობა'" />
+        }
+      </div>
+
+      <!-- ფასი და ვალუტა -->
+      <div class="price-row">
+        <div>
+          <label for="price">ფასი</label>
+          <input type="number" id="price" formControlName="price" placeholder="მაგ: 22500">
+        </div>
+        <div>
+          <label for="currency">ვალუტა</label>
+          <select id="currency" formControlName="currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GEL">GEL</option>
+          </select>
+        </div>
+      </div>
+      @if (priceControl.touched && priceControl.hasError('required')) {
+        <app-error-msg [errorMsg]="'ჩაწერეთ ფასი'" />
+      }
+
+      <!-- 🖼️ სურათების ატვირთვა კომპიუტერიდან (1-დან 4-მდე) -->
+      <div>
+        <label for="carImages">ატვირთეთ სურათები (მინ. 1, მაქს. 4)</label>
+        <input type="file" id="carImages" multiple accept="image/*" (change)="onFilesSelected($event)">
+        
+        @if (imageError) {
+          <app-error-msg [errorMsg]="imageError" />
+        }
+
+        <!-- ატვირთული სურათების პრევიუ -->
+        @if (uploadedImages.length > 0) {
+          <div class="image-preview" style="display: flex; gap: 10px; margin-top: 10px;">
+            @for (img of uploadedImages; track $index) {
+              <img [src]="img" width="70" height="50" style="object-fit: cover; border-radius: 4px; border: 1px solid #ccc;">
+            }
+          </div>
+          <p style="font-size: 12px; color: green; margin-top: 5px;">არჩეულია: {{ uploadedImages.length }} სურათი</p>
+        }
+      </div>
+
+      <!-- აღწერა -->
+      <div>
+        <label for="description">აღწერა</label>
+        <textarea id="description" formControlName="description" rows="3" placeholder="დაწერეთ დეტალური ინფორმაცია მანქანაზე..."></textarea>
+        @if (descriptionControl.touched && descriptionControl.hasError('required')) {
+          <app-error-msg [errorMsg]="'აღწერის ველი აუცილებელია'" />
+        }
+      </div>
+
+      <button type="button" (click)="addCar()" [disabled]="carForm.invalid || uploadedImages.length === 0">მანქანის დამატება</button>
+      
+      <hr>
+      <p><a routerLink="/cars">მთავარ გვერდზე დაბრუნება</a></p>
+    </form>
+  </div>
+</div>

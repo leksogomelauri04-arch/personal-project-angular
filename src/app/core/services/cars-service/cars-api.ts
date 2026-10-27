@@ -48,4 +48,7 @@ export class CarsApi {
   public getListingById(id: string): Observable<ICarListing> {
     return this.http.get<ICarListing>(`${baseUrl}/listings/${id}`);
   }
+  public createListing(car: Partial<ICarListing>): Observable<ICarListing> {
+    return this.http.post<ICarListing>(`${baseUrl}/listings`, car);
+  }
 }
