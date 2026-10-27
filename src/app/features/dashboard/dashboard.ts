@@ -1,15 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CarsService } from '../../core/services/cars-service/cars-service';
 import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormsModule],
   selector: 'app-dashboard',
   styleUrl: './dashboard.scss',
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
   private carServ = inject(CarsService);
+
+  
   constructor(){
     this.carServ.getCategories()
   }
