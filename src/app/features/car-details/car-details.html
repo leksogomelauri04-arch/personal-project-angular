@@ -1,0 +1,25 @@
+<div class="car-details-container">
+  @if (carServ.selectedCar(); as car) {
+    <h1>{{ car.brand }} {{ car.model }} ({{ car.year }})</h1>
+    
+    <div class="price-tag">
+      <h2>ფასი: {{ car.price }} {{ car.currency }}</h2>
+    </div>
+
+    <!-- სურათების გალერეა -->
+    <div class="images-gallery">
+      @for (img of car.images; track $index) {
+        <img [src]="img" alt="Car Image" class="car-img">
+      }
+    </div>
+
+    <!-- დამატებითი დეტალები -->
+    <div class="specs">
+      <p><strong>გარბენი:</strong> {{ car.mileage }} კმ</p>
+      <p><strong>ძრავის მოცულობა:</strong> {{ car.engineVolume }} L</p>
+      <p><strong>აღწერა:</strong> {{ car.description }}</p>
+    </div>
+  } @else {
+    <p>იტვირთება მანქანის მონაცემები...</p>
+  }
+</div>

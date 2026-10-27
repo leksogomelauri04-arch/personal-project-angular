@@ -2,34 +2,49 @@
   <div class="texts">
     <p>⚡ყველაზე სწრაფი ავტო-პორტალი</p>
     <h1>იპოვე შენი ოცნების ავტომობილი ან გაყიდე მარტივად</h1>
-    <h5>ათასობით განცხადება სანდო გამყიდველებისგან ერთ სივრცეში. იპოვე სასურველი მარკა და მოდელი საუკეთესო ფასად.</h5>
+    <h5>ათასობით განცხადება სანდო გამყიდველებისგან ერთ სივრცეში...</h5>
   </div>
+  
   <div class="search">
-        <div>
-            <label for="brand">მარკა</label>
-            <select id="brand">
-                @for (category of carServ.categories(); track $index) {
-                    <option value="">{{category.brand}}</option>
-                }
-            </select>
-        </div>
-        <div>
-            <label for="model">მოდელი</label>
-            <select id="model">
-                @for (category of carServ.categories(); track $index) {
-                    <option  value="">{{category.models}}</option>
-                }
-            </select>
-        </div>
-        <div>
-            <label for="year">წელი</label>
-            <select id="year">
-              <option value="" disabled selected>ნებისმიერი წელი</option>
-              @for (year of years; track year) {
-                <option [value]="year">{{ year }}</option>
-              }
-            </select>
-        </div>
-        <button>🔍 ძებნა</button>
+    <!-- 1. მარკა -->
+    <div>
+        <label for="brand">მარკა</label>
+        <select id="brand" [(ngModel)]="selectedBrand" (change)="onBrandChange($event)">
+            <option value="" disabled selected>აირჩიეთ მარკა</option>
+            @for (category of carServ.categories(); track $index) {
+                <option [value]="category.brand">{{ category.brand }}</option>
+            }
+        </select>
     </div>
+
+    <!-- 2. მოდელი -->
+    <div>
+        <label for="model">მოდელი</label>
+        <select id="model" [(ngModel)]="selectedModel" [disabled]="!selectedBrand">
+            <option value="" disabled selected>აირჩიეთ მოდელი</option>
+            @for (model of availableModels; track $index) {
+                <option [value]="model">{{ model }}</option>
+            }
+        </select>
+    </div>
+
+    <!-- 3. წელი -->
+    <div>
+        <label for="year">წელი</label>
+        <select id="year" [(ngModel)]="selectedYear">
+          <option value="" disabled selected>ნებისმიერი წელი</option>
+          @for (year of years; track year) {
+            <option [value]="year">{{ year }}</option>
+          }
+        </select>
+    </div>
+
+    <!-- ძებნის ღილაკი -->
+    <button type="button" (click)="onSearch()">🔍 ძებნა</button>
+  </div>
+</div>
+
+<!-- აქ იტვირთება შვილები: თავიდან ბოლოს დამატებულები, ხოლო სერჩის დროს - შედეგები -->
+<div class="dashboard-content-outlet">
+  <router-outlet></router-outlet>
 </div>

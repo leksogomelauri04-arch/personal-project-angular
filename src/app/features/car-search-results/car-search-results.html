@@ -1,0 +1,22 @@
+<div class="results-container">
+  <h2>სერჩის შედეგები</h2>
+
+  @if (carServ.listings().length > 0) {
+    <div class="car-grid">
+      @for (car of carServ.listings(); track car.id) {
+        <div class="car-card" (click)="goToCarDetails(car.id)" style="cursor: pointer; border: 1px solid #ccc; padding: 15px; margin-bottom: 10px;">
+          @if (car.images && car.images.length > 0) {
+            <img [src]="car.images[0]" [alt]="car.brand" width="200">
+          }
+          <div class="info">
+            <h3>{{ car.brand }} {{ car.model }}</h3>
+            <p>წელი: {{ car.year }} | გარბენი: {{ car.mileage }} კმ</p>
+            <p class="price" style="font-weight: bold; color: green;">ფასი: {{ car.price }} {{ car.currency }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p>მანქანები არ მოიძებნა ამ ფილტრებით.</p>
+  }
+</div>
