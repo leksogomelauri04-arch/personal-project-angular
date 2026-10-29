@@ -1,14 +1,12 @@
 @use '../../shared/scss/variables.scss' as *;
 
-// :host {
-//     display: block;
-//     width: 100%;
-// }
-header{
-    position: sticky;
-    margin-bottom: 50px;
-.main {
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin-bottom: 50px;
 
+  .main {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -20,42 +18,168 @@ header{
     background-color: $primary-color;
 
     .logo {
-        cursor: pointer;
+      cursor: pointer;
 
-        img {
-            height: 100px;
-            width: auto;
-            object-fit: contain;
-        }
+      img {
+        height: 100px;
+        width: auto;
+        object-fit: contain;
+      }
     }
 
     .middle {
-        display: flex;
-        gap: 40px;
+      display: flex;
+      gap: 40px;
 
-        a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-        }
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+      }
     }
 
-    .left {   // HTML-ში ასე ჰქვია; სურვილისამებრ გადაარქვი .right-ად ორივეგან
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .add-car {
         display: flex;
         align-items: center;
-        gap: 20px;
-        .add-car{
-            background-color:$btn-red-color;
-            color: $white-text-color;
-            padding: 10px;
-            border-radius: 10px;
-            border: 0;
+        gap: 8px;
+        background-color: $btn-red-color;
+        color: $white-text-color;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 0;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .login-btn {
+        background-color: $btn-red-color;
+        color: $white-text-color;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 0;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .favorites {
+        color: $btn-red-color;
+        font-size: 25px;
+      }
+
+      .profile-menu {
+        position: relative;
+
+        .profile-btn {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 6px 12px 6px 6px;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 10px;
+          color: #fff;
+          font-weight: 600;
+          cursor: pointer;
+          transition: border-color 0.2s;
+
+          &:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+          }
+
+          .avatar {
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5b8def, #9b6bff);
+            color: #fff;
+            font-size: 14px;
+          }
+
+          .arrow {
+            font-size: 11px;
+            color: #aab4c5;
+            transition: transform 0.2s;
+
+            &.rotated {
+              transform: rotate(180deg);
+            }
+          }
         }
-        .favorites{
+
+        .profile-dropdown {
+          position: absolute;
+          top: calc(100% + 10px);
+          right: 0;
+          min-width: 210px;
+          margin: 0;
+          padding: 8px;
+          list-style: none;
+          background: #1a2233;
+          border: 1px solid #2a3447;
+          border-radius: 12px;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+          z-index: 100;
+
+          li a,
+          li button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 11px 12px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: #e8edf5;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s;
+
+            i {
+              width: 18px;
+              text-align: center;
+              color: #8e9ab0;
+            }
+
+            &:hover {
+              background: #232d42;
+            }
+          }
+
+          .heart {
             color: $btn-red-color;
-            font-size: 25px;
+          }
+
+          .divider {
+            height: 1px;
+            margin: 6px 0;
+            background: #2a3447;
+          }
+
+          .logout {
+            color: #ff6b78;
+
+            i {
+              color: #ff6b78;
+            }
+
+            &:hover {
+              background: rgba(255, 77, 94, 0.12);
+            }
+          }
         }
+      }
     }
-}
+  }
 }

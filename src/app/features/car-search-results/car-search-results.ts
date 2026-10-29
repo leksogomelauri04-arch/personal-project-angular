@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CarsService } from '../../core/services/cars-service/cars-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../core/services/user-services/auth-service';
 
 @Component({
   imports: [],
@@ -12,6 +13,7 @@ export class CarSearchResults implements OnInit {
   public carServ = inject(CarsService)
   private route = inject(ActivatedRoute)
   private router = inject(Router)
+  public auth = inject(AuthService);
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params =>{

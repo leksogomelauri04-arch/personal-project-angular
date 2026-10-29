@@ -1,26 +1,28 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ErrorMsg } from '../../shared/components/error-msg/error-msg';
 import { CarsService } from '../../core/services/cars-service/cars-service';
+import { AuthService } from '../../core/services/user-services/auth-service';
 import { ICarListing } from '../../shared/interfaces/cars.interface';
-import { CommonModule } from '@angular/common';
+import { AppRoutes } from '../../core/enums/app-routes.enum';
 
 @Component({
   selector: 'app-add-car',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink, ErrorMsg],
   templateUrl: './add-car.html',
-  styleUrl: './add-car.scss'
+  styleUrl: './add-car.scss',
 })
 export class AddCar implements OnInit {
   public carServ = inject(CarsService);
+  private auth = inject(AuthService);
   private router = inject(Router);
 
   public availableModels: string[] = [];
   public years: number[] = Array.from({ length: 30 }, (_, i) => 2026 - i);
-  
-  // მასივი ატვირთული სურათების ბაზისისთვის (base64)
+
   public uploadedImages: string[] = [];
   public imageError: string = '';
 
@@ -36,13 +38,12 @@ export class AddCar implements OnInit {
   });
 
   ngOnInit(): void {
-    // 💡 აქ ვტვირთავთ კატეგორიებს, რომ მარკები გამოჩნდეს დროპდაუნში!
     this.carServ.getCategories();
   }
 
   public onBrandChange(event: Event): void {
     const selectedBrandName = (event.target as HTMLSelectElement).value;
-    const foundCategory = this.carServ.categories().find(c => c.brand === selectedBrandName);
+    const foundCategory = this.carServ.categories().find((c) => c.brand === selectedBrandName);
 
     if (foundCategory) {
       this.availableModels = foundCategory.models;
@@ -54,43 +55,57 @@ export class AddCar implements OnInit {
     this.modelControl.setValue('');
   }
 
-  // სურათების ატვირთვის ლოგიკა კომპიუტერიდან
-  public onFilesSelected(event: any): void {
-    const files: FileList = event.target.files;
+  public async onFilesSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const files = input.files;
     this.imageError = '';
+    this.uploadedImages = [];
 
-    if (files.length < 1) {
+    if (!files || files.length < 1) {
       this.imageError = 'აუცილებელია მინიმუმ 1 სურათის ატვირთვა';
       return;
     }
     if (files.length > 4) {
       this.imageError = 'შეგიძლიათ ატვირთოთ მაქსიმუმ 4 სურათი';
+      input.value = '';
       return;
     }
 
-    this.uploadedImages = [];
+    try {
+      this.uploadedImages = await Promise.all(Array.from(files).map((f) => this.readFile(f)));
+    } catch {
+      this.imageError = 'სურათის წაკითხვა ვერ მოხერხდა';
+    }
+  }
 
-    // თითოეული ფაილის გადაყვანა Base64 სტრიქონში, რომ შევინახოთ ბაზაში
-    Array.from(files).forEach((file: File) => {
+  private readFile(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.uploadedImages.push(e.target.result);
-      };
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(reader.error);
       reader.readAsDataURL(file);
     });
   }
 
   public addCar(): void {
+    if (this.uploadedImages.length === 0) {
+      this.imageError = 'ატვირთეთ მინიმუმ 1 სურათი';
+    }
     if (this.carForm.invalid || this.uploadedImages.length === 0) {
-      if (this.uploadedImages.length === 0) {
-        this.imageError = 'ატვირთეთ მინიმუმ 1 სურათი';
-      }
+      this.carForm.markAllAsTouched();
+      return;
+    }
+
+    const user = this.auth.currentUser();
+    if (!user?.id) {
+      this.router.navigateByUrl(AppRoutes.Login);
       return;
     }
 
     const formValues = this.carForm.getRawValue();
 
     const newCar: Partial<ICarListing> = {
+      userId: user.id,
       brand: formValues.brand!,
       model: formValues.model!,
       year: Number(formValues.year),
@@ -99,16 +114,12 @@ export class AddCar implements OnInit {
       price: Number(formValues.price),
       currency: formValues.currency!,
       description: formValues.description!,
-      images: this.uploadedImages // აქ ვწერთ ატვირთულ სურათებს
+      images: this.uploadedImages,
     };
 
     this.carServ.createListing(newCar).subscribe({
-      next: () => {
-        this.router.navigate(['/cars']);
-      },
-      error: (err) => {
-        console.error('Error adding car:', err);
-      }
+      next: () => this.router.navigateByUrl(AppRoutes.Cars),
+      error: (err) => console.error('Error adding car:', err),
     });
   }
 

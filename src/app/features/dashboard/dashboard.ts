@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CarsService } from '../../core/services/cars-service/cars-service';
+import { AuthService } from '../../core/services/user-services/auth-service';
 
 @Component({
   imports: [RouterOutlet, FormsModule],
@@ -12,6 +13,7 @@ import { CarsService } from '../../core/services/cars-service/cars-service';
 export class Dashboard implements OnInit {
   private carServ = inject(CarsService);
   private router = inject(Router);
+  public auth = inject(AuthService);
 
   protected selectedBrand = '';
   protected selectedModel = '';

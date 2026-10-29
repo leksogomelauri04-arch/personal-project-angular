@@ -1,26 +1,57 @@
 <header>
-<div class="main">
-    <div routerLink="/cars" class="logo">
-        <img src="/logo.png" alt="">
-    </div>
+  <div class="main">
+    <a routerLink="/cars" class="logo">
+      <img src="/logo.png" alt="logo" />
+    </a>
+
     <div class="middle">
-        <a href="">მთავარი</a>
-        <a href="">ჩვენს შესახებ</a>
+      <a routerLink="/cars">მთავარი</a>
+      <a routerLink="/about">ჩვენს შესახებ</a>
     </div>
+
     <div class="left">
-        <button routerLink="/add-car" class="add-car">+ მანქანის დამატება</button>
-        <div class="favorites"><i class="fa-solid fa-heart"></i></div>
-        <div class="dropdown profile-menu">
-  <button class="btn btn-primary dropdown-toggle" type="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
-    Toggle menu
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Menu item 1</a></li>
-    <li><a class="dropdown-item" href="#">Menu item 2</a></li>
-    <li><a class="dropdown-item" href="#">Menu item 3</a></li>
-  </ul>
-</div>
+      @if (auth.isLoggedIn()) {
+        <button type="button" routerLink="/add-car" class="add-car">
+          <i class="fa-solid fa-plus"></i> მანქანის დამატება
+        </button>
+
+        <a routerLink="/favorites" class="favorites">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+
+        <div class="profile-menu">
+          <button type="button" class="profile-btn" (click)="toggleMenu()">
+            <span class="avatar">
+              {{ auth.currentUser()?.username?.charAt(0)?.toUpperCase() }}
+            </span>
+            <span class="name">{{ auth.currentUser()?.username }}</span>
+            <i class="fa-solid fa-chevron-down arrow" [class.rotated]="menuOpen()"></i>
+          </button>
+
+          @if (menuOpen()) {
+            <ul class="profile-dropdown">
+              <li>
+                <a routerLink="/my-listings" (click)="closeMenu()">
+                  <i class="fa-solid fa-car"></i> ჩემი განცხადებები
+                </a>
+              </li>
+              <li>
+                <a routerLink="/favorites" (click)="closeMenu()">
+                  <i class="fa-solid fa-heart heart"></i> ფავორიტები
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <button type="button" class="logout" (click)="logout()">
+                  <i class="fa-solid fa-right-from-bracket"></i> გამოსვლა
+                </button>
+              </li>
+            </ul>
+          }
+        </div>
+      } @else {
+        <button type="button" routerLink="/login" class="login-btn">შესვლა</button>
+      }
     </div>
-</div>
+  </div>
 </header>
