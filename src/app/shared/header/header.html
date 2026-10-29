@@ -17,6 +17,9 @@
 
         <a routerLink="/favorites" class="favorites">
           <i class="fa-solid fa-heart"></i>
+          @if (favServ.count() > 0) {
+            <span class="badge">{{ favServ.count() }}</span>
+          }
         </a>
 
         <div class="profile-menu">

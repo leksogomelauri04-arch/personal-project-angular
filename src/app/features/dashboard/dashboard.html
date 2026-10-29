@@ -4,47 +4,85 @@
     <h1>იპოვე შენი ოცნების ავტომობილი ან გაყიდე მარტივად</h1>
     <h5>ათასობით განცხადება სანდო გამყიდველებისგან ერთ სივრცეში...</h5>
   </div>
-  
+
   <div class="search">
-    <!-- 1. მარკა -->
     <div>
-        <label for="brand">მარკა</label>
-        <select id="brand" [(ngModel)]="selectedBrand" (change)="onBrandChange($event)">
-            <option value="" disabled selected>აირჩიეთ მარკა</option>
-            @for (category of carServ.categories(); track $index) {
-                <option [value]="category.brand">{{ category.brand }}</option>
-            }
-        </select>
+      <label for="brand">მარკა</label>
+      <select id="brand" [(ngModel)]="selectedBrand" (change)="onBrandChange($event)">
+        <option value="" disabled selected>აირჩიეთ მარკა</option>
+        @for (category of carServ.categories(); track $index) {
+          <option [value]="category.brand">{{ category.brand }}</option>
+        }
+      </select>
     </div>
 
-    <!-- 2. მოდელი -->
     <div>
-        <label for="model">მოდელი</label>
-        <select id="model" [(ngModel)]="selectedModel" [disabled]="!selectedBrand">
-            <option value="" disabled selected>აირჩიეთ მოდელი</option>
-            @for (model of availableModels; track $index) {
-                <option [value]="model">{{ model }}</option>
-            }
-        </select>
+      <label for="model">მოდელი</label>
+      <select id="model" [(ngModel)]="selectedModel" [disabled]="!selectedBrand">
+        <option value="" disabled selected>აირჩიეთ მოდელი</option>
+        @for (model of availableModels; track $index) {
+          <option [value]="model">{{ model }}</option>
+        }
+      </select>
     </div>
 
-    <!-- 3. წელი -->
     <div>
-        <label for="year">წელი</label>
-        <select id="year" [(ngModel)]="selectedYear">
-          <option value="" disabled selected>ნებისმიერი წელი</option>
-          @for (year of years; track year) {
-            <option [value]="year">{{ year }}</option>
-          }
-        </select>
+      <label for="year">წელი</label>
+      <select id="year" [(ngModel)]="selectedYear">
+        <option value="" disabled selected>ნებისმიერი წელი</option>
+        @for (year of years; track year) {
+          <option [value]="year">{{ year }}</option>
+        }
+      </select>
     </div>
 
-    <!-- ძებნის ღილაკი -->
     <button type="button" (click)="onSearch()">🔍 ძებნა</button>
   </div>
 </div>
 
-<!-- აქ იტვირთება შვილები: თავიდან ბოლოს დამატებულები, ხოლო სერჩის დროს - შედეგები -->
+<section class="latest">
+  <h2>ბოლო დამატებული განცხადებები</h2>
+
+  @if (carServ.latestListings().length === 0) {
+    <p class="empty">ჯერ განცხადებები არ არის დამატებული</p>
+  } @else {
+    <div class="grid">
+      @for (car of carServ.latestListings(); track car.id) {
+        <div class="card">
+          @if (auth.isLoggedIn()) {
+            <button
+              type="button"
+              class="fav-btn"
+              [class.active]="favServ.isFavorite(car.id)"
+              [attr.aria-label]="favServ.isFavorite(car.id) ? 'ფავორიტებიდან ამოშლა' : 'ფავორიტებში დამატება'"
+              (click)="favServ.toggle(car.id)"
+            >
+              <i [class]="favServ.isFavorite(car.id) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            </button>
+          }
+
+          <a class="card-link" [routerLink]="['/car', car.id]">
+            <div class="image">
+              @if (car.images?.length) {
+                <img [src]="car.images[0]" [alt]="car.brand + ' ' + car.model" />
+              }
+            </div>
+            <div class="info">
+              <h3>{{ car.brand }} {{ car.model }}</h3>
+              <p class="meta">
+                {{ car.year }} • {{ car.mileage | number }} კმ • {{ car.engineVolume }} ლ
+              </p>
+              <p class="price">
+                {{ car.price | number }} {{ car.currency === 'USD' ? '$' : car.currency }}
+              </p>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  }
+</section>
+
 <div class="dashboard-content-outlet">
   <router-outlet></router-outlet>
 </div>

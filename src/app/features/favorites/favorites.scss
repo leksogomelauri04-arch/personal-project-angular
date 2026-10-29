@@ -1,0 +1,102 @@
+@use '../../shared/scss/variables.scss' as *;
+
+.results {
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 0 40px;
+  color: $white-text-color;
+
+  h2 {
+    margin: 0 0 24px;
+  }
+
+  .empty {
+    opacity: 0.7;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    background-color: $primary-color;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s, color 0.15s;
+
+      &:hover {
+        transform: scale(1.1);
+        background: rgba(0, 0, 0, 0.75);
+      }
+
+      &.active {
+        color: $btn-red-color;
+      }
+    }
+
+    .image {
+      height: 180px;
+      background: rgba(128, 128, 128, 0.15);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .info {
+      padding: 14px;
+
+      h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+
+      .meta {
+        margin: 0 0 10px;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      .price {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: $btn-red-color;
+      }
+    }
+  }
+}

@@ -1,89 +1,199 @@
 @use '../../shared/scss/variables.scss' as *;
 
 .main {
-    position: relative;
-    margin: 0 auto;
-    min-height: 550px;
-    width: 100%;
-    max-width: 1500px;
-    overflow: hidden;
-    background-color: $bg-color;
+  position: relative;
+  margin: 0 auto;
+  min-height: 550px;
+  width: 100%;
+  max-width: 1500px;
+  overflow: hidden;
+  background-color: $bg-color;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%),
+      url('/main_bg_img.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+    color: $white-text-color;
+  }
+
+  .texts {
+    padding: 30px;
+
+    p {
+      display: inline;
+      border: solid 1px #6d0000;
+      border-radius: 50px;
+      background-color: #261818;
+      color: #d81616;
+      padding: 6px 10px;
+    }
+
+    h1 {
+      width: 40%;
+      line-height: 50px;
+      font-size: 45px;
+      padding-bottom: 40px;
+      padding-top: 40px;
+      color: $white-text-color;
+    }
+
+    h5 {
+      font-size: 14px;
+      font-weight: 300;
+      width: 40%;
+      color: $grey-text-color;
+    }
+  }
+
+  .search {
+    background-color: $primary-color;
+    margin: 0 auto;
+    padding: 45px;
+    border: solid 1px rgb(51, 51, 51);
+    border-radius: 20px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        color: $grey-text-color;
+      }
+
+      select {
+        width: 250px;
+        height: 40px;
+        border-radius: 10px;
+        background-color: $bg-color;
+        color: $white-text-color;
+      }
+    }
+
+    button {
+      width: 250px;
+      height: 40px;
+      border-radius: 10px;
+      background-color: $btn-red-color;
+      color: $white-text-color;
+    }
+  }
+}
+
+.latest {
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 0 40px;
+  color: $white-text-color;
+
+  h2 {
+    margin: 0 0 24px;
+  }
+
+  .empty {
+    opacity: 0.7;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    background-color: $primary-color;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s, color 0.15s;
+
+      &:hover {
+        transform: scale(1.1);
+        background: rgba(0, 0, 0, 0.75);
+      }
+
+      &.active {
+        color: $btn-red-color;
+      }
+    }
+
+    .image {
+      height: 180px;
+      background: rgba(128, 128, 128, 0.15);
+
+      img {
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), 
-                          url('/main_bg_img.jpg');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        z-index: 1; /* ფონი ყოველთვის ქვემოთაა */
+        object-fit: cover;
+      }
     }
 
-    > * {
-        position: relative;
-        z-index: 2;
-        color: $white-text-color;
+    .info {
+      padding: 14px;
+
+      h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+
+      .meta {
+        margin: 0 0 10px;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      .price {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: $btn-red-color;
+      }
     }
-    .texts{
-        padding: 30px;
-        p{
-          display: inline;
-          border: solid 1px #6d0000;
-          border-radius: 50px;
-          background-color: #261818;
-          color: #d81616;
-          padding: 6px 10px;
-        }
-        h1{
-            width: 40%;
-            line-height: 50px;
-            font-size: 45px;
-            padding-bottom: 40px;
-            padding-top: 40px;
-            color: $white-text-color;
-        }
-        h5{
-            font-size: 14px;
-            font-weight: 300;
-            width: 40%;
-            color: $grey-text-color;
-        }
-    }
-    .search{
-            background-color: $primary-color;
-            margin: 0 auto;
-            padding: 45px;
-            border: solid 1px rgb(51, 51, 51);
-            border-radius: 20px;
-            width: 90%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            div{
-                display: flex;
-                flex-direction: column;
-                label{
-                    color: $grey-text-color;
-                }
-                select{
-                    width: 250px;
-                    height: 40px;
-                    border-radius: 10px;
-                    background-color: $bg-color;
-                    color: $white-text-color;
-                }
-            }
-            button{
-                    width: 250px;
-                    height: 40px;
-                    border-radius: 10px;
-                    background-color: $btn-red-color;
-                    color: $white-text-color;
-                }
-        }
+  }
 }

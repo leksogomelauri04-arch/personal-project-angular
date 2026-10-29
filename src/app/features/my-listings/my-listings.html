@@ -1,0 +1,37 @@
+<div class="my-listings">
+  <div class="top">
+    <h2>ჩემი განცხადებები</h2>
+    <a routerLink="/add-car" class="add-btn">
+      <i class="fa-solid fa-plus"></i> მანქანის დამატება
+    </a>
+  </div>
+
+  @if (carServ.myListings().length === 0) {
+    <div class="empty">
+      <i class="fa-solid fa-car"></i>
+      <p>ჯერ არ გაქვთ დამატებული განცხადება</p>
+      <a routerLink="/add-car">დაამატეთ პირველი მანქანა</a>
+    </div>
+  } @else {
+    <div class="grid">
+      @for (car of carServ.myListings(); track car.id) {
+        <a class="card" [routerLink]="['/car', car.id]">
+          <div class="image">
+            @if (car.images?.length) {
+              <img [src]="car.images[0]" [alt]="car.brand + ' ' + car.model" />
+            }
+          </div>
+          <div class="info">
+            <h3>{{ car.brand }} {{ car.model }}</h3>
+            <p class="meta">
+              {{ car.year }} • {{ car.mileage | number }} კმ • {{ car.engineVolume }} ლ
+            </p>
+            <p class="price">
+              {{ car.price | number }} {{ car.currency === 'USD' ? '$' : car.currency }}
+            </p>
+          </div>
+        </a>
+      }
+    </div>
+  }
+</div>

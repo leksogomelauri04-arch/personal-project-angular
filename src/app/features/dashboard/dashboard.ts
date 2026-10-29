@@ -1,19 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CarsService } from '../../core/services/cars-service/cars-service';
 import { AuthService } from '../../core/services/user-services/auth-service';
+import { FavoritesService } from '../../core/services/favorites-service/favorites-service';
 
 @Component({
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, DecimalPipe],
   selector: 'app-dashboard',
   styleUrl: './dashboard.scss',
   templateUrl: './dashboard.html',
 })
 export class Dashboard implements OnInit {
-  private carServ = inject(CarsService);
-  private router = inject(Router);
+  public carServ = inject(CarsService);
+  public favServ = inject(FavoritesService);
   public auth = inject(AuthService);
+  private router = inject(Router);
 
   protected selectedBrand = '';
   protected selectedModel = '';
@@ -23,6 +26,7 @@ export class Dashboard implements OnInit {
 
   ngOnInit(): void {
     this.carServ.getCategories();
+    this.carServ.loadLatestListings(10);
   }
 
   onBrandChange(event: Event): void {

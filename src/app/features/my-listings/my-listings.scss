@@ -1,0 +1,103 @@
+@use '../../shared/scss/variables.scss' as *;
+
+.my-listings {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+    }
+
+    .add-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background-color: $btn-red-color;
+      color: $white-text-color;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 12px;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .image {
+      height: 180px;
+      background: rgba(128, 128, 128, 0.15);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .info {
+      padding: 14px;
+
+      h3 {
+        margin: 0 0 6px;
+        font-size: 18px;
+      }
+
+      .meta {
+        margin: 0 0 10px;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      .price {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: $btn-red-color;
+      }
+    }
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 20px;
+    text-align: center;
+    opacity: 0.85;
+
+    i {
+      font-size: 48px;
+    }
+
+    a {
+      color: $btn-red-color;
+      font-weight: 700;
+    }
+  }
+}

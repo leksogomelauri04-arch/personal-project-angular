@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/user-services/auth-service';
+import { FavoritesService } from '../../core/services/favorites-service/favorites-service';
 
 @Component({
   imports: [RouterLink],
@@ -10,6 +11,7 @@ import { AuthService } from '../../core/services/user-services/auth-service';
 })
 export class Header {
   public auth = inject(AuthService);
+  public favServ = inject(FavoritesService);
   private host = inject(ElementRef<HTMLElement>);
 
   public menuOpen = signal(false);

@@ -1,0 +1,39 @@
+<section class="results">
+  <h2>ჩემი ფავორიტები</h2>
+
+  @if (favoriteCars().length > 0) {
+    <div class="grid">
+      @for (car of favoriteCars(); track car.id) {
+        <div class="card">
+          <button
+            type="button"
+            class="fav-btn active"
+            aria-label="ფავორიტებიდან ამოშლა"
+            (click)="favServ.toggle(car.id)"
+          >
+            <i class="fa-solid fa-heart"></i>
+          </button>
+
+          <a class="card-link" [routerLink]="['/car', car.id]">
+            <div class="image">
+              @if (car.images?.length) {
+                <img [src]="car.images[0]" [alt]="car.brand + ' ' + car.model" />
+              }
+            </div>
+            <div class="info">
+              <h3>{{ car.brand }} {{ car.model }}</h3>
+              <p class="meta">
+                {{ car.year }} • {{ car.mileage | number }} კმ • {{ car.engineVolume }} ლ
+              </p>
+              <p class="price">
+                {{ car.price | number }} {{ car.currency === 'USD' ? '$' : car.currency }}
+              </p>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="empty">ფავორიტებში ჯერ არაფერი გაქვთ დამატებული.</p>
+  }
+</section>

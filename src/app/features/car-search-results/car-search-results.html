@@ -1,22 +1,42 @@
-<div class="results-container">
+<section class="results">
   <h2>სერჩის შედეგები</h2>
 
   @if (carServ.listings().length > 0) {
-    <div class="car-grid">
+    <div class="grid">
       @for (car of carServ.listings(); track car.id) {
-        <div class="car-card" (click)="goToCarDetails(car.id)" style="cursor: pointer; border: 1px solid #ccc; padding: 15px; margin-bottom: 10px;">
-          @if (car.images && car.images.length > 0) {
-            <img [src]="car.images[0]" [alt]="car.brand" width="200">
+        <div class="card">
+          @if (auth.isLoggedIn()) {
+            <button
+              type="button"
+              class="fav-btn"
+              [class.active]="favServ.isFavorite(car.id)"
+              [attr.aria-label]="favServ.isFavorite(car.id) ? 'ფავორიტებიდან ამოშლა' : 'ფავორიტებში დამატება'"
+              (click)="favServ.toggle(car.id)"
+            >
+              <i [class]="favServ.isFavorite(car.id) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            </button>
           }
-          <div class="info">
-            <h3>{{ car.brand }} {{ car.model }}</h3>
-            <p>წელი: {{ car.year }} | გარბენი: {{ car.mileage }} კმ</p>
-            <p class="price" style="font-weight: bold; color: green;">ფასი: {{ car.price }} {{ car.currency }}</p>
-          </div>
+
+          <a class="card-link" [routerLink]="['/car', car.id]">
+            <div class="image">
+              @if (car.images?.length) {
+                <img [src]="car.images[0]" [alt]="car.brand + ' ' + car.model" />
+              }
+            </div>
+            <div class="info">
+              <h3>{{ car.brand }} {{ car.model }}</h3>
+              <p class="meta">
+                {{ car.year }} • {{ car.mileage | number }} კმ • {{ car.engineVolume }} ლ
+              </p>
+              <p class="price">
+                {{ car.price | number }} {{ car.currency === 'USD' ? '$' : car.currency }}
+              </p>
+            </div>
+          </a>
         </div>
       }
     </div>
   } @else {
-    <p>მანქანები არ მოიძებნა ამ ფილტრებით.</p>
+    <p class="empty">მანქანები არ მოიძებნა ამ ფილტრებით.</p>
   }
-</div>
+</section>

@@ -1,31 +1,29 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CarsService } from '../../core/services/cars-service/cars-service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/services/user-services/auth-service';
+import { FavoritesService } from '../../core/services/favorites-service/favorites-service';
 
 @Component({
-  imports: [],
+  imports: [RouterLink, DecimalPipe],
   selector: 'app-car-search-results',
   styleUrl: './car-search-results.scss',
   templateUrl: './car-search-results.html',
 })
 export class CarSearchResults implements OnInit {
-  public carServ = inject(CarsService)
-  private route = inject(ActivatedRoute)
-  private router = inject(Router)
+  public carServ = inject(CarsService);
+  public favServ = inject(FavoritesService);
   public auth = inject(AuthService);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>{
-      const brand = params['brand']
-      const model = params['model']
-      const year = params['year']
-
-      this.carServ.loadListings({brand, model, year})
-    }) 
+    this.route.queryParams.subscribe((params) => {
+      this.carServ.loadListings({
+        brand: params['brand'],
+        model: params['model'],
+        year: params['year'],
+      });
+    });
   }
-  goToCarDetails(carId: string):void{
-    this.router.navigate(['/car', carId])
-  }
-
 }
