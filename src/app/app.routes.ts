@@ -9,6 +9,7 @@ import { MyListings } from './features/my-listings/my-listings';
 import { Favorites } from './features/favorites/favorites';
 import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
+import { AboutUs } from './features/about-us/about-us';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'cars', pathMatch: 'full' },
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'car/:id', component: CarDetails },
   { path: 'add-car', component: AddCar, canActivate: [authGuard] },
   { path: 'my-listings', component: MyListings, canActivate: [authGuard] },
+  { path:'about-us', component:AboutUs},
   { path: 'favorites', component: Favorites, canActivate: [authGuard] },
   { path: '**', redirectTo: 'cars' },
 ];
