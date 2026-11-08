@@ -70,7 +70,9 @@
             <div class="info">
               <h3>{{ car.brand }} {{ car.model }}</h3>
               <p class="meta">
-                {{ car.year }} • {{ car.mileage | number }} კმ • {{ car.engineVolume }} ლ
+               გამოშვების წელი: {{ car.year }} <br>
+               გარბენი: {{ car.mileage | number }} კმ <br>
+               ძრავის მოცულობა: {{ car.engineVolume }} ლ
               </p>
               <p class="price">
                 {{ car.price | number }} {{ car.currency === 'USD' ? '$' : car.currency }}
