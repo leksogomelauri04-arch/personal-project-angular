@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CarsService } from '../../core/services/cars-service/cars-service';
 import { AuthService } from '../../core/services/user-services/auth-service';
+import { CarCard } from '../../shared/components/car-card/car-card';
 
 @Component({
   selector: 'app-my-listings',
-  imports: [RouterLink, DecimalPipe],
+  imports: [RouterLink, CarCard],
   templateUrl: './my-listings.html',
   styleUrl: './my-listings.scss',
 })

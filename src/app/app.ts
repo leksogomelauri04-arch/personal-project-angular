@@ -5,8 +5,8 @@ import { SpinnerService } from './core/services/spinner-serv';
 import { AsyncPipe } from '@angular/common';
 import { ErrorMsg } from './shared/components/error-msg/error-msg';
 import { ErrorService } from './core/services/error-service';
-import { Header } from './shared/header/header';
-import { Footer } from './shared/footer/footer';
+import { Footer } from './shared/components/footer/footer';
+import { Header } from './shared/components/header/header';
 
 
 @Component({

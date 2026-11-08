@@ -1,18 +1,17 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { CarsService } from '../../core/services/cars-service/cars-service';
 import { FavoritesService } from '../../core/services/favorites-service/favorites-service';
+import { CarCard } from '../../shared/components/car-card/car-card';
 
 @Component({
   selector: 'app-favorites',
-  imports: [RouterLink, DecimalPipe],
+  imports: [CarCard],
   templateUrl: './favorites.html',
   styleUrl: './favorites.scss',
 })
 export class Favorites implements OnInit {
   public carServ = inject(CarsService);
-  public favServ = inject(FavoritesService);
+  private favServ = inject(FavoritesService);
 
   public favoriteCars = computed(() => {
     const ids = new Set(this.favServ.favorites().map((f) => String(f.carId)));

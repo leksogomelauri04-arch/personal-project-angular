@@ -48,38 +48,7 @@
   } @else {
     <div class="grid">
       @for (car of carServ.latestListings(); track car.id) {
-        <div class="card">
-          @if (auth.isLoggedIn()) {
-            <button
-              type="button"
-              class="fav-btn"
-              [class.active]="favServ.isFavorite(car.id)"
-              [attr.aria-label]="favServ.isFavorite(car.id) ? 'ფავორიტებიდან ამოშლა' : 'ფავორიტებში დამატება'"
-              (click)="favServ.toggle(car.id)"
-            >
-              <i [class]="favServ.isFavorite(car.id) ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
-            </button>
-          }
-
-          <a class="card-link" [routerLink]="['/car', car.id]">
-            <div class="image">
-              @if (car.images?.length) {
-                <img [src]="car.images[0]" [alt]="car.brand + ' ' + car.model" />
-              }
-            </div>
-            <div class="info">
-              <h3>{{ car.brand }} {{ car.model }}</h3>
-              <p class="meta">
-               გამოშვების წელი: {{ car.year }} <br>
-               გარბენი: {{ car.mileage | number }} კმ <br>
-               ძრავის მოცულობა: {{ car.engineVolume }} ლ
-              </p>
-              <p class="price">
-                {{ car.price | number }} {{ car.currency === 'USD' ? '$' : car.currency }}
-              </p>
-            </div>
-          </a>
-        </div>
+        <app-car-card [car]="car" />
       }
     </div>
   }
