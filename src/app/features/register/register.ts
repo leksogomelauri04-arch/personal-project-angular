@@ -16,7 +16,7 @@ import { AuthService } from '../../core/services/user-services/auth-service';
 export class Register {
   private authServ = inject(AuthService)
   public userForm = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.email]),
     mobile: new FormControl('', [
       Validators.required,

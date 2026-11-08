@@ -1,0 +1,193 @@
+@use '../../shared/scss/variables.scss' as *;
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+
+    .auth-card {
+        background-color: $primary-color;
+        border-radius: 20px;
+        border: solid 1px $grey-text-color;
+        width: 100%;
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+
+        .texts {
+            margin-bottom: 20px;
+            h2 {
+                color: $white-text-color;
+                margin-bottom: 5px;
+            }
+            p {
+                color: $grey-text-color;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                width: 48%;
+               
+
+                label {
+                    color: $grey-text-color;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                }
+
+                select, input, textarea {
+                    padding: 10px;
+                    border-radius: 8px;
+                    border: 1px solid #ccc;
+                    background-color: $bg-color;
+                    width: 100%;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    color: $grey-text-color;
+
+                    &:focus {
+                        outline: none;
+                        border-color: #007bff;
+                    }
+                }
+
+                option {
+                    background-color: $bg-color;
+                    color: $grey-text-color;
+                }
+
+               
+                .custom-file-upload {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 6px 6px 6px 12px;
+                    border-radius: 8px;
+                    border: 1px solid #ccc;
+                    background-color: $bg-color;
+                    width: 100%;
+                    box-sizing: border-box;
+                    cursor: pointer;
+
+                    input[type="file"] {
+                        display: none;
+                    }
+
+                    .upload-btn {
+                        
+                        color: #ffffff;
+                        
+                        border-radius: 6px;
+                        font-size: 40px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: background-color 0.2s;
+
+                        &:hover {
+                            background-color: #0056b3;
+                        }
+                    }
+
+                    .file-placeholder {
+                        font-size: 14px;
+                        color: $grey-text-color;
+                        margin-left: 10px;
+                        flex-grow: 1;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+              
+                .price-currency-wrapper {
+                    display: flex;
+                    gap: 10px;
+                    width: 100%;
+
+                    input {
+                        flex: 2;
+                    }
+
+                    select {
+                        flex: 1;
+                    }
+                }
+            }
+
+            .full-width {
+                width: 100%;
+            }
+
+            .image-preview {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+
+                img {
+                    object-fit: cover;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                }
+            }
+
+            .success-text {
+                font-size: 12px;
+                color: #28a745;
+                margin-top: 5px;
+            }
+
+            hr {
+                width: 100%;
+                border: 0;
+                border-top: 1px solid $grey-text-color;
+                margin: 20px 0;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 12px;
+                background-color: $btn-red-color;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background 0.2s;
+
+                &:hover:not(:disabled) {
+                    background-color: $btn-red-color;
+                }
+
+                &:disabled {
+                    background-color: #ccc;
+                    cursor: not-allowed;
+                }
+            }
+
+            .return-link {
+                text-align: center;
+                width: 100%;
+                a {
+                    color: $grey-text-color;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

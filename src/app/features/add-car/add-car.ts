@@ -31,8 +31,8 @@ export class AddCar implements OnInit {
     model: new FormControl({ value: '', disabled: true }, [Validators.required]),
     year: new FormControl('', [Validators.required]),
     mileage: new FormControl('', [Validators.required, Validators.min(0)]),
-    engineVolume: new FormControl('', [Validators.required, Validators.min(0.5)]),
-    price: new FormControl('', [Validators.required, Validators.min(100)]),
+    engineVolume: new FormControl('', [Validators.required, Validators.min(0.1)]),
+    price: new FormControl('', [Validators.required, Validators.min(1)]),
     currency: new FormControl('USD', [Validators.required]),
     description: new FormControl('', [Validators.required, Validators.minLength(10)]),
   });
@@ -65,8 +65,8 @@ export class AddCar implements OnInit {
       this.imageError = 'აუცილებელია მინიმუმ 1 სურათის ატვირთვა';
       return;
     }
-    if (files.length > 4) {
-      this.imageError = 'შეგიძლიათ ატვირთოთ მაქსიმუმ 4 სურათი';
+    if (files.length > 2) {
+      this.imageError = 'შეგიძლიათ ატვირთოთ მაქსიმუმ 2 სურათი';
       input.value = '';
       return;
     }
