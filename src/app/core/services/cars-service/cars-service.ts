@@ -2,16 +2,19 @@ import { inject, Service, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICarListing, ICategory } from '../../../shared/interfaces/cars.interface';
 import { CarsApi } from './cars-api';
+import { ApiRequests } from '../user-services/api-requests';
 
 @Service()
 export class CarsService {
   private carsApi = inject(CarsApi);
+  private usersApi = inject(ApiRequests);
 
   public categories = signal<ICategory[]>([]);
   public listings = signal<ICarListing[]>([]);
   public latestListings = signal<ICarListing[]>([]);
   public myListings = signal<ICarListing[]>([]);
   public selectedCar = signal<ICarListing | null>(null);
+  public seller = signal<{ username: string; mobile: string } | null>(null);
 
   public getCategories(): void {
     this.carsApi.getCarsCategories().subscribe((value) => this.categories.set(value));
@@ -40,9 +43,24 @@ export class CarsService {
   }
 
   public loadCarById(id: string): void {
+    this.seller.set(null);
+    this.selectedCar.set(null);
+
     this.carsApi.getListingById(id).subscribe({
-      next: (car) => this.selectedCar.set(car),
+      next: (car) => {
+        this.selectedCar.set(car);
+        this.loadSeller(car.userId);
+      },
       error: (err) => console.log('მანქანის დეტალების ჩატვირთვა ვერ მოხერხდა:', err),
+    });
+  }
+
+  private loadSeller(userId: string): void {
+    if (!userId) return;
+
+    this.usersApi.getUserById(userId).subscribe({
+      next: (user) => this.seller.set({ username: user.username, mobile: user.mobile }),
+      error: (err) => console.log('გამყიდველის ჩატვირთვა ვერ მოხერხდა:', err),
     });
   }
 

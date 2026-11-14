@@ -1,0 +1,37 @@
+@use '../../shared/scss/variables.scss' as *;
+
+.car-details{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .car-images{
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .car-info{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        h1{
+            color:$white-text-color ;
+            font-size: 30px;
+        }
+        p{
+            color: $white-text-color;
+        }
+        h2{
+            color: $btn-red-color;
+        }
+        .phone{
+            font-size: 20px;
+            width: auto;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(1, 137, 44);
+            border: solid 1px green;
+
+        }
+    }
+}

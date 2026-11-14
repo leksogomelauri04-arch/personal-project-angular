@@ -36,7 +36,7 @@ export class ApiRequests {
     return this.getUsers();
   }
 
-  // null ნიშნავს, რომ მომხმარებელი უკვე არსებობს
+  
   public register(userInfo: IUserInfo): Observable<IUserInfo | null> {
     return this.getUsers().pipe(
       switchMap((usersInfo) => {
@@ -68,4 +68,7 @@ export class ApiRequests {
       })
     );
   }
+  public getUserById(id: string): Observable<IUserInfo> {
+  return this.http.get<IUserInfo>(`${baseUrl}/users/${id}`);
+}
 }
