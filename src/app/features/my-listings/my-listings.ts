@@ -20,4 +20,7 @@ export class MyListings implements OnInit {
       this.carServ.loadMyListings(user.id);
     }
   }
+  public onDelete(id: string): void {
+  this.carServ.deleteListing(id);
+}
 }

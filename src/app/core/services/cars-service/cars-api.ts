@@ -57,4 +57,11 @@ export class CarsApi {
   public createListing(car: Partial<ICarListing>): Observable<ICarListing> {
     return this.http.post<ICarListing>(`${baseUrl}/listings`, car);
   }
+  public updateListing(id: string, car: Partial<ICarListing>): Observable<ICarListing> {
+    return this.http.patch<ICarListing>(`${baseUrl}/listings/${id}`, car);
+  }
+
+  public deleteListing(id: string): Observable<unknown> {
+    return this.http.delete(`${baseUrl}/listings/${id}`);
+  }
 }

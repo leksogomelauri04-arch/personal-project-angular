@@ -81,4 +81,18 @@
       color: $btn-red-color;
     }
   }
+  .actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .edit{
+      text-decoration: none;
+    }
+    .delete{
+      background-color: $btn-red-color;
+      color: $white-text-color;
+      border: none;
+      border-radius: 10px;
+    }
+  }
 }

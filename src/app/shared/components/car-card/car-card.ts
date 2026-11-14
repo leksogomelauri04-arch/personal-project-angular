@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ICarListing } from '../../interfaces/cars.interface';
@@ -14,7 +14,15 @@ import { FavoritesService } from '../../../core/services/favorites-service/favor
 export class CarCard {
   public car = input.required<ICarListing>();
   public showFavorite = input(true);
+  public showActions = input(false);
+  public deleteRequested = output<string>();
 
   public auth = inject(AuthService);
   public favServ = inject(FavoritesService);
+
+  public onDelete(): void {
+    if (confirm('დარწმუნებული ხართ, რომ გსურთ განცხადების წაშლა?')) {
+      this.deleteRequested.emit(this.car().id);
+    }
+  }
 }

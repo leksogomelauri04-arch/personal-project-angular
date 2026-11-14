@@ -15,7 +15,12 @@
   } @else {
     <div class="grid">
       @for (car of carServ.myListings(); track car.id) {
-        <app-car-card [car]="car" [showFavorite]="false" />
+        <app-car-card
+          [car]="car"
+          [showFavorite]="false"
+          [showActions]="true"
+          (deleteRequested)="onDelete($event)"
+        />
       }
     </div>
   }

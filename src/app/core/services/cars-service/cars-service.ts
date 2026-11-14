@@ -67,4 +67,23 @@ export class CarsService {
   public createListing(car: Partial<ICarListing>): Observable<ICarListing> {
     return this.carsApi.createListing(car);
   }
+  public updateListing(id: string, car: Partial<ICarListing>): Observable<ICarListing> {
+  return this.carsApi.updateListing(id, car);
+  }
+
+  public deleteListing(id: string): void {
+    const previous = this.myListings();
+    this.myListings.set(previous.filter((c) => c.id !== id));
+    this.latestListings.update((list) => list.filter((c) => c.id !== id));
+
+    this.carsApi.deleteListing(id).subscribe({
+      error: (err) => {
+        console.error('წაშლა ვერ მოხერხდა:', err);
+        this.myListings.set(previous);
+      },
+    });
+  }
+  public getListingById(id: string): Observable<ICarListing> {
+    return this.carsApi.getListingById(id);
+  }
 }

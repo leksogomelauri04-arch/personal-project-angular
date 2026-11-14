@@ -1,7 +1,7 @@
 <div class="main">
   <div class="auth-card">
     <div class="texts">
-      <h2>ახალი ავტომობილის დამატება</h2>
+      <h2>{{ editId ? 'განცხადების რედაქტირება' : 'მანქანის დამატება' }}</h2>
       <p>შეავსეთ ფორმის ყველა სავალდებულო ველი</p>
     </div>
     
@@ -85,7 +85,7 @@
 
       
 <div class="form-group full-width">
-  <label>ატვირთეთ სურათები (მინ. 1, მაქს. 2)</label>
+  <label>ატვირთეთ სურათები</label>
   
  
   <div class="custom-file-upload">
@@ -98,7 +98,7 @@
       }
     </span>
 
-    <input type="file" id="carImages" multiple accept="image/*" (change)="onFilesSelected($event)">
+    <input type="file" id="carImages"  accept="image/*" (change)="onFilesSelected($event)">
   </div>
   
   @if (imageError) {
@@ -124,7 +124,7 @@
         }
       </div>
 
-      <button type="button" class="submit-btn" (click)="addCar()" [disabled]="carForm.invalid || uploadedImages.length === 0">მანქანის დამატება</button>
+      <button type="submit" class="submit-btn" (click)="addCar()" [disabled]="carForm.invalid || isProcessingImages || uploadedImages.length === 0">{{ isProcessingImages ? 'სურათები მუშავდება...' : (editId ? 'შენახვა' : 'დამატება') }}</button>
       
       <hr>
       <p class="return-link"><a routerLink="/cars">მთავარ გვერდზე დაბრუნება</a></p>

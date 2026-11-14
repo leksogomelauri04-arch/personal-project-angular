@@ -22,5 +22,6 @@ export const routes: Routes = [
   { path: 'my-listings', component: MyListings, canActivate: [authGuard] },
   { path:'about-us', component:AboutUs},
   { path: 'favorites', component: Favorites, canActivate: [authGuard] },
+  { path: 'edit-car/:id', component: AddCar, canActivate: [authGuard] },
   { path: '**', redirectTo: 'cars' },
 ];
