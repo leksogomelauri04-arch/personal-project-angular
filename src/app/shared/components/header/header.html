@@ -1,5 +1,9 @@
 <header>
   <div class="main">
+    <button type="button" class="burger" aria-label="მენიუ" (click)="toggleNav()">
+      <i class="fa-solid" [class.fa-bars]="!navOpen()" [class.fa-xmark]="navOpen()"></i>
+    </button>
+
     <a routerLink="/cars" class="logo">
       <img src="/logo.png" alt="logo" />
     </a>
@@ -11,11 +15,11 @@
 
     <div class="left">
       @if (auth.isLoggedIn()) {
-        <button type="button" routerLink="/add-car" class="add-car">
+        <button type="button" routerLink="/add-car" class="add-car desktop-only">
           <i class="fa-solid fa-plus"></i> მანქანის დამატება
         </button>
 
-        <a routerLink="/favorites" class="favorites">
+        <a routerLink="/favorites" class="favorites desktop-only">
           <i class="fa-solid fa-heart"></i>
           @if (favServ.count() > 0) {
             <span class="badge">{{ favServ.count() }}</span>
@@ -34,12 +38,12 @@
           @if (menuOpen()) {
             <ul class="profile-dropdown">
               <li>
-                <a routerLink="/my-listings" (click)="closeMenu()">
+                <a routerLink="/my-listings" (click)="closeAll()">
                   <i class="fa-solid fa-car"></i> ჩემი განცხადებები
                 </a>
               </li>
               <li>
-                <a routerLink="/favorites" (click)="closeMenu()">
+                <a routerLink="/favorites" (click)="closeAll()">
                   <i class="fa-solid fa-heart heart"></i> ფავორიტები
                 </a>
               </li>
@@ -57,4 +61,26 @@
       }
     </div>
   </div>
+
+  @if (navOpen()) {
+    <nav class="mobile-nav">
+      <a routerLink="/cars" (click)="closeAll()">
+        <i class="fa-solid fa-house"></i> მთავარი
+      </a>
+      <a routerLink="/about-us" (click)="closeAll()">
+        <i class="fa-solid fa-circle-info"></i> ჩვენს შესახებ
+      </a>
+      @if (auth.isLoggedIn()) {
+        <a routerLink="/favorites" (click)="closeAll()">
+          <i class="fa-solid fa-heart"></i> ფავორიტები
+          @if (favServ.count() > 0) {
+            <span class="badge">{{ favServ.count() }}</span>
+          }
+        </a>
+        <a routerLink="/add-car" (click)="closeAll()">
+          <i class="fa-solid fa-plus"></i> მანქანის დამატება
+        </a>
+      }
+    </nav>
+  }
 </header>

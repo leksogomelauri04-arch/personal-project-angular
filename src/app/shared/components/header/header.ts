@@ -16,24 +16,32 @@ export class Header {
   private host = inject(ElementRef<HTMLElement>);
 
   public menuOpen = signal(false);
+  public navOpen = signal(false);
 
   public toggleMenu(): void {
     this.menuOpen.update((v) => !v);
+    this.navOpen.set(false);
   }
 
-  public closeMenu(): void {
+  public toggleNav(): void {
+    this.navOpen.update((v) => !v);
     this.menuOpen.set(false);
   }
 
+  public closeAll(): void {
+    this.menuOpen.set(false);
+    this.navOpen.set(false);
+  }
+
   public logout(): void {
-    this.closeMenu();
+    this.closeAll();
     this.auth.logout();
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (!this.host.nativeElement.contains(event.target as Node)) {
-      this.menuOpen.set(false);
+      this.closeAll();
     }
   }
 }

@@ -53,5 +53,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('./features/favorites/favorites').then((m) => m.Favorites),
   },
+  {
+    path: 'about-us',
+    loadComponent: () => import('./features/about-us/about-us').then((m) => m.AboutUs),
+  },
   { path: '**', redirectTo: 'cars' },
 ];

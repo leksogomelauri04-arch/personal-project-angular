@@ -1,11 +1,12 @@
 @use '../../scss/variables.scss' as *;
+@use '../../scss/responsive' as *;
+
 
 header {
   position: sticky;
   top: 0;
   z-index: 50;
   margin-bottom: 50px;
-
   .main {
     display: flex;
     justify-content: space-around;
@@ -16,6 +17,26 @@ header {
     padding: 0 40px;
     box-sizing: border-box;
     background-color: $primary-color;
+    @include tablet{
+      padding: 0px; 
+    }
+        .burger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+
+      @include mobile {
+        display: grid;
+        place-items: center;
+      }
+    }
+    
 
     .logo {
       cursor: pointer;
@@ -24,18 +45,30 @@ header {
         height: 100px;
         width: auto;
         object-fit: contain;
+        @include tablet{
+        height: 60px; 
+        }
       }
     }
 
     .middle {
       display: flex;
       gap: 40px;
+      @include tablet{
+        gap: 15px; 
+      }
+      @include mobile{
+        display: none;
+      }
 
       a {
         color: #fff;
         text-decoration: none;
         font-weight: 500;
         font-size: 16px;
+        &:hover{
+          color: $btn-red-color;
+        }
       }
     }
 
@@ -55,6 +88,16 @@ header {
         border: 0;
         font-weight: 700;
         cursor: pointer;
+        &:hover{
+          background-color: rgb(113, 1, 1);
+        }
+        @include tablet{
+        gap: 0px;
+        padding: 5px; 
+        }
+        @include mobile{
+          display: none;
+        }
       }
 
       .login-btn {
@@ -71,6 +114,12 @@ header {
         position: relative;
         color: $btn-red-color;
         font-size: 25px;
+        &:hover{
+          color: red;
+        }
+        @include mobile{
+          display: none;
+        }
 
         .badge {
           position: absolute;
@@ -196,6 +245,52 @@ header {
             }
           }
         }
+      }
+    }
+  }
+  .mobile-nav {
+    display: none;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 16px 16px;
+      background-color: $primary-color;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 8px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      &:hover{
+        background-color: #2a3447;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      i {
+        width: 20px;
+        text-align: center;
+        color: $btn-red-color;
+      }
+
+      .badge {
+        min-width: 20px;
+        padding: 0 6px;
+        border-radius: 10px;
+        background: $btn-red-color;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
       }
     }
   }

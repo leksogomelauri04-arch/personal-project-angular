@@ -1,4 +1,6 @@
 @use '../../shared/scss/variables.scss' as *;
+@use'../../shared/scss/responsive' as *;
+
 
 .main {
   position: relative;
@@ -67,8 +69,11 @@
     border-radius: 20px;
     width: 90%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
+    
+    
 
     div {
       display: flex;
@@ -84,6 +89,7 @@
         border-radius: 10px;
         background-color: $bg-color;
         color: $white-text-color;
+        cursor: pointer;
       }
     }
 
@@ -93,6 +99,9 @@
       border-radius: 10px;
       background-color: $btn-red-color;
       color: $white-text-color;
+      &:hover{
+        background-color: red;
+      }
     }
   }
 }
