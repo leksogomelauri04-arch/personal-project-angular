@@ -1,27 +1,57 @@
 import { Routes } from '@angular/router';
-import { Login } from './features/login/login';
-import { Register } from './features/register/register';
-import { Dashboard } from './features/dashboard/dashboard';
-import { CarSearchResults } from './features/car-search-results/car-search-results';
-import { CarDetails } from './features/car-details/car-details';
-import { AddCar } from './features/add-car/add-car';
-import { MyListings } from './features/my-listings/my-listings';
-import { Favorites } from './features/favorites/favorites';
 import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
-import { AboutUs } from './features/about-us/about-us';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'cars', pathMatch: 'full' },
-  { path: 'login', component: Login, canActivate: [guestGuard] },
-  { path: 'register', component: Register, canActivate: [guestGuard] },
-  { path: 'cars', component: Dashboard },
-  { path: 'search-results', component: CarSearchResults },
-  { path: 'car/:id', component: CarDetails },
-  { path: 'add-car', component: AddCar, canActivate: [authGuard] },
-  { path: 'my-listings', component: MyListings, canActivate: [authGuard] },
-  { path:'about-us', component:AboutUs},
-  { path: 'favorites', component: Favorites, canActivate: [authGuard] },
-  { path: 'edit-car/:id', component: AddCar, canActivate: [authGuard] },
+  {
+    path: 'login',
+    canActivate: [guestGuard],
+    loadComponent: () => import('./features/login/login').then((m) => m.Login),
+  },
+  {
+    path: 'register',
+    canActivate: [guestGuard],
+    loadComponent: () => import('./features/register/register').then((m) => m.Register),
+  },
+  {
+    path: 'forgot-password',
+    canActivate: [guestGuard],
+    loadComponent: () =>
+      import('./features/forgot-password/forgot-password').then((m) => m.ForgotPassword),
+  },
+  {
+    path: 'cars',
+    loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+  },
+  {
+    path: 'search-results',
+    loadComponent: () =>
+      import('./features/car-search-results/car-search-results').then((m) => m.CarSearchResults),
+  },
+  {
+    path: 'car/:id',
+    loadComponent: () => import('./features/car-details/car-details').then((m) => m.CarDetails),
+  },
+  {
+    path: 'add-car',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/add-car/add-car').then((m) => m.AddCar),
+  },
+  {
+    path: 'edit-car/:id',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/add-car/add-car').then((m) => m.AddCar),
+  },
+  {
+    path: 'my-listings',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/my-listings/my-listings').then((m) => m.MyListings),
+  },
+  {
+    path: 'favorites',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/favorites/favorites').then((m) => m.Favorites),
+  },
   { path: '**', redirectTo: 'cars' },
 ];

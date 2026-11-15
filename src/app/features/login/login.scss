@@ -6,7 +6,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; // ჰედერი ზევით, ფუტერი ქვევით, შუაში კონტენტი
+    justify-content: space-between; 
 }
 
 .auth-card {
@@ -80,7 +80,7 @@ body {
                 height: 40px;
                 background-color: $bg-color;
                 color: $white-text-color;
-                padding: 0 10px; // ტექსტი კუთხეებს რომ არ მიეკრას
+                padding: 0 10px; 
                 box-sizing: border-box;
             }
         }

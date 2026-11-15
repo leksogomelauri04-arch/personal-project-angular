@@ -11,16 +11,16 @@ body {
 body {
     position: relative;
     background-color: $bg-color;
-    overflow-x: hidden; // იცავს ჰორიზონტალური სქროლისგან
+    overflow-x: hidden; 
 }
 
-// Angular-ის host ელემენტი default-ად inline-ია
+
 app-root {
     display: block;
     width: 100%;
 }
 
-// კონტეინერი, რომელიც შიგთავსს გააცენტრებს 1500px-ზე
+
 .container {
     max-width: 1500px;
     width: 100%;

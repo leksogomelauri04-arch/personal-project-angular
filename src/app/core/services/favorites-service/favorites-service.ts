@@ -12,7 +12,6 @@ export class FavoritesService {
   public count = computed(() => this.favorites().length);
   private favoriteIds = computed(() => new Set(this.favorites().map((f) => String(f.carId))));
 
-  // დალოგინება/გამოსვლისას ავტომატურად განახლდება
   private sync = effect(() => {
     const user = this.auth.currentUser();
     if (user?.id) {
@@ -36,14 +35,14 @@ export class FavoritesService {
     const existing = this.favorites().find((f) => String(f.carId) === String(carId));
 
     if (existing) {
-      // ამოშლა
+      
       const previous = this.favorites();
       this.favorites.set(previous.filter((f) => f !== existing));
       this.api.remove(existing.id!).subscribe({
         error: () => this.favorites.set(previous),
       });
     } else {
-      // დამატება
+      
       this.api.add({ userId: user.id, carId: String(carId) }).subscribe({
         next: (created) => this.favorites.update((list) => [...list, created]),
         error: (err) => console.error('ფავორიტში დამატება ვერ მოხერხდა:', err),

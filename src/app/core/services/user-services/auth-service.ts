@@ -5,6 +5,7 @@ import { IUser, IUserInfo } from '../../../shared/interfaces/users.interfaces';
 import { ErrorService } from '../error-service';
 import { StorageKeys } from '../../enums/storage-keys.enum';
 import { AppRoutes } from '../../enums/app-routes.enum';
+import { map, Observable } from 'rxjs';
 
 export type ISessionUser = Omit<IUserInfo, 'password'>;
 
@@ -53,11 +54,20 @@ export class AuthService {
   }
 
   public register(userInfo: IUserInfo): void {
-  this.apiService.register(userInfo).subscribe({
-    next: (created) => {
-      if (created) this.router.navigateByUrl(AppRoutes.Login);
-    },
-    error: (err) => console.error('Register error:', err),
-  });
-}
+    this.apiService.register(userInfo).subscribe({
+      next: (created) => {
+        if (created) this.router.navigateByUrl(AppRoutes.Login);
+      },
+      error: (err) => console.error('Register error:', err),
+    });
+  }
+  public verifyUser(email: string, mobile: string): Observable<string | null> {
+    return this.apiService
+      .findUserByEmailAndMobile(email, mobile)
+      .pipe(map((user) => user?.id ?? null));
+  }
+
+  public resetPassword(userId: string, newPassword: string): Observable<unknown> {
+    return this.apiService.updatePassword(userId, newPassword);
+  }
 }

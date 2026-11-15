@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service, signal } from '@angular/core';
-import { Observable, of, switchMap, tap, delay } from 'rxjs';
+import { Observable, of, switchMap, tap, delay, map } from 'rxjs';
 import { IUserInfo } from '../../../shared/interfaces/users.interfaces';
 import { ErrorService } from '../error-service';
 import { SpinnerService } from '../spinner-serv';
@@ -36,7 +36,6 @@ export class ApiRequests {
     return this.getUsers();
   }
 
-  
   public register(userInfo: IUserInfo): Observable<IUserInfo | null> {
     return this.getUsers().pipe(
       switchMap((usersInfo) => {
@@ -68,7 +67,32 @@ export class ApiRequests {
       })
     );
   }
+
   public getUserById(id: string): Observable<IUserInfo> {
-  return this.http.get<IUserInfo>(`${baseUrl}/users/${id}`);
-}
+    return this.http.get<IUserInfo>(`${baseUrl}/users/${id}`);
+  }
+
+  private normalizePhone(phone: string): string {
+    return (phone ?? '').replace(/\D/g, '').slice(-9);
+  }
+
+  public findUserByEmailAndMobile(email: string, mobile: string): Observable<IUserInfo | null> {
+    const emailNorm = email.trim().toLowerCase();
+    const phoneNorm = this.normalizePhone(mobile);
+
+    return this.http.get<IUserInfo[]>(`${baseUrl}/users`).pipe(
+      map(
+        (users) =>
+          users.find(
+            (u) =>
+              u.email.trim().toLowerCase() === emailNorm &&
+              this.normalizePhone(u.mobile) === phoneNorm
+          ) ?? null
+      )
+    );
+  }
+
+  public updatePassword(id: string, password: string): Observable<IUserInfo> {
+    return this.http.patch<IUserInfo>(`${baseUrl}/users/${id}`, { password });
+  }
 }
